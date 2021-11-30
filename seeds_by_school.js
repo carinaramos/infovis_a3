@@ -1,4 +1,4 @@
-{
+export const seedsBySchool = {
     "Georgetown": {
         "1985": 1,
         "1986": 4,
