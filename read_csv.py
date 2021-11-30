@@ -1,5 +1,5 @@
 # importing csv module
-import csv, pprint
+import csv, pprint, json
 
 # csv file name
 filename = "NCAA Mens March Madness Historical Results.csv"
@@ -53,29 +53,27 @@ for row in rows:
 	if winner not in seeds_by_school:
 		seeds_by_school[winner] = {}
 		for year in map(lambda a: f"19{a:02}", range(85, 100)):
-			seeds_by_school[winner][year] = -1
+			seeds_by_school[winner][year] = 17
 		for year in map(lambda a: f"20{a:02}", range(0, 17)):
-			seeds_by_school[winner][year] = -1
+			seeds_by_school[winner][year] = 17
 	seed_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
-	seeds_by_school[winner][seed_year] = row[WINNING_SEED]
+	seeds_by_school[winner][seed_year] = int(row[WINNING_SEED])
 	loser = row[LOSER]
 	# if this school isn't in the dictionary yet, add it & set initial values of zero wins for all years
 	if loser not in seeds_by_school:
 		seeds_by_school[loser] = {}
 		for year in map(lambda a: f"19{a:02}", range(85, 100)):
-			seeds_by_school[loser][year] = -1
+			seeds_by_school[loser][year] = 17
 		for year in map(lambda a: f"20{a:02}", range(0, 17)):
-			seeds_by_school[loser][year] = -1
+			seeds_by_school[loser][year] = 17
 	seed_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
-	seeds_by_school[loser][seed_year] = row[LOSING_SEED]
+	seeds_by_school[loser][seed_year] = int(row[LOSING_SEED])
 
 pprint.pprint(wins_by_school['Duke'])
 pprint.pprint(seeds_by_school['Duke'])
 
 			
-# 	row[DATE][-2:]
-	# parsing each column of a row
-	# for col in row:
-	# 	print("%10s"%col),
-	# print('\n')
-
+with open("wins_by_school.json", "w") as outfile:
+    outfile.write(json.dumps(wins_by_school, indent = 4))
+with open("seeds_by_school.json", "w") as outfile:
+    outfile.write(json.dumps(seeds_by_school, indent = 4))
