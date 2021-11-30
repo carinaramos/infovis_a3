@@ -69,11 +69,8 @@ for row in rows:
 	seed_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
 	seeds_by_school[loser][seed_year] = int(row[LOSING_SEED])
 
-pprint.pprint(wins_by_school['Duke'])
-pprint.pprint(seeds_by_school['Duke'])
-
 			
 with open("wins_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(wins_by_school, indent = 4))
+    outfile.write(json.dumps(wins_by_school, indent = 4, sorted=True))
 with open("seeds_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(seeds_by_school, indent = 4))
+    outfile.write(json.dumps(seeds_by_school, indent = 4, sorted=True))

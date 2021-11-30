@@ -24,6 +24,7 @@ div.tooltip {
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- d3 topojson -->
     <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <h1>NCAA March Madness Tournament Data</h1>
 
     <div id="list">
@@ -37,13 +38,18 @@ div.tooltip {
                 seedsBySchool = await d3.json("seeds_by_school.json");
                 var listDiv = document.getElementById('list');
                 var ul = document.createElement('ul');
+                var counter = 0;
                 for (var key in seedsBySchool) {
-                    var li = document.createElement('li');
-                    li.innerHTML = key;
+                    var button = document.createElement('button');
+                    button.classList = 'btn btn-outline-secondary';
+                    button.innerHTML = key;
                     console.log(key);
-                    ul.appendChild(li);                                 
+                    if (counter < 10) {
+                        ul.appendChild(button); 
+                    }
+                    counter += 1;                                
                 }
-                listDiv.appendChild(ul);
+                    listDiv.appendChild(ul);
             };
 
             ready();
