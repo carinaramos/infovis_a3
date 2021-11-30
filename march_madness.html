@@ -19,53 +19,39 @@ div.tooltip {
 
 </style>
 <body>
-<!--Rather than loading v3 or v4, loading individual modules to ensure compatibility with v4 functions (loads newest version of each)-->
-<script src="https://d3js.org/d3-geo.v1.min.js"></script>
-<script src="https://d3js.org/d3-selection.v1.min.js"></script>
-<script src="https://d3js.org/d3-array.v1.min.js"></script>
-<script src="http://d3js.org/topojson.v1.min.js"></script>
-<script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
-<script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-dsv.v0.3.min.js"></script>
-<script src="https://d3js.org/d3-request.v0.4.min.js"></script>
-<script src="https://d3js.org/d3-queue.v3.min.js"></script>
-<script>
-</script>
-<h1>NCAA March Madness Tournament Data</h1>
+    <!--Rather than loading v3 or v4, loading individual modules to ensure compatibility with v4 functions (loads newest version of each)-->
+    <!-- d3 v6 integration -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- d3 topojson -->
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <h1>NCAA March Madness Tournament Data</h1>
 
-<div>Select school(s)
+    <div id="list">
 
-    <!-- code adapted from https://stackoverflow.com/questions/43579748/how-to-achieve-autocomplete-feature-over-html-drop-down-or-select-element-->
-    <link 
-    href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" 
-    rel="stylesheet" />
-    <script 
-    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
-    </script>
-    <script 
-    
-    src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js">
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $(".js-example-basic-multiple").select2();
-    });
+        <!-- code adapted from https://stackoverflow.com/questions/43579748/how-to-achieve-autocomplete-feature-over-html-drop-down-or-select-element-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script type="text/javascript">
+            async function ready() {
+                seedsBySchool = await d3.json("seeds_by_school.json");
+                var listDiv = document.getElementById('list');
+                var ul = document.createElement('ul');
+                for (var key in seedsBySchool) {
+                    var li = document.createElement('li');
+                    li.innerHTML = key;
+                    console.log(key);
+                    ul.appendChild(li);                                 
+                }
+                listDiv.appendChild(ul);
+            };
 
-    $(document).ready(function() {
-    $('.option').click(function() {
-        $("#select :selected").each(function() {
-            console.log(this.value);
-        });
-    });
-});
-    </script>
-    
-    <select id="select" class="js-example-basic-multiple" multiple="multiple">
-        <option class="option" value="AL">Alabama</option>
-        <option class="option" value="WY">Wyoming</option>
-    </select>
-    <button id="submit">Submit</button>
-</div>
+            ready();
+        </script>
+        
+        
+        <!-- <button id="submit">Submit</button> -->
+    </div>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-export const winsBySchool = {
+{
     "Georgetown": {
         "1985": 5,
         "1986": 1,
