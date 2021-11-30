@@ -1,0 +1,72 @@
+<html>
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+
+div.tooltip {
+         position: absolute;
+         text-align: center;
+         width: 200px;
+         height: 28px;
+         font: 12px sans-serif;
+         background: lightsteelblue;
+         border: 0px;
+         pointer-events: none;
+}
+
+
+
+</style>
+<body>
+<!--Rather than loading v3 or v4, loading individual modules to ensure compatibility with v4 functions (loads newest version of each)-->
+<script src="https://d3js.org/d3-geo.v1.min.js"></script>
+<script src="https://d3js.org/d3-selection.v1.min.js"></script>
+<script src="https://d3js.org/d3-array.v1.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="https://d3js.org/d3-collection.v0.1.min.js"></script>
+<script src="https://d3js.org/d3-dispatch.v0.4.min.js"></script>
+<script src="https://d3js.org/d3-dsv.v0.3.min.js"></script>
+<script src="https://d3js.org/d3-request.v0.4.min.js"></script>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script>
+</script>
+<h1>NCAA March Madness Tournament Data</h1>
+
+<div>Select school(s)
+
+    <!-- code adapted from https://stackoverflow.com/questions/43579748/how-to-achieve-autocomplete-feature-over-html-drop-down-or-select-element-->
+    <link 
+    href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css" 
+    rel="stylesheet" />
+    <script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <script 
+    
+    src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js">
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $(".js-example-basic-multiple").select2();
+    });
+
+    $(document).ready(function() {
+    $('.option').click(function() {
+        $("#select :selected").each(function() {
+            console.log(this.value);
+        });
+    });
+});
+    </script>
+    
+    <select id="select" class="js-example-basic-multiple" multiple="multiple">
+        <option class="option" value="AL">Alabama</option>
+        <option class="option" value="WY">Wyoming</option>
+    </select>
+    <button id="submit">Submit</button>
+</div>
+
+</body>
+</html>
+
