@@ -2,8 +2,8 @@ const layout = {
     width: 1000,
     height: 600,
     chartWidth: 950,
-    topChartHeight: 125,
-    bottomChartHeight: 325,
+    topChartHeight: 225,
+    bottomChartHeight: 225,
     marginTop: 10,
     marginBottom: 40,
     marginLeft: 40,
@@ -74,19 +74,33 @@ async function ready() {
         xAxis.selectAll("line, .domain").attr("stroke", "gray");
       
    
-    
+    // NUM WINS
     // mark group layout
-    let markGroup = svg.append("g")
+    let markGroupWins = svg.append("g")
         .attr("id", "marks")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`);
-      
     // mapping data to actual marks
-    let marks = markGroup.selectAll("circle").data(filteredRecords, d => d["id"]);
-    marks.join(enter => enter.append("circle"))
+    let winMarks = markGroupWins.selectAll("circle").data(filteredRecords, d => d["id"]);
+    winMarks.join(enter => enter.append("circle"))
         .attr("cx", d => xScale(d["year"]))
         .attr("cy", d => yScale(d["wins"]))
         .attr("r", 4)
         .attr("fill", "steelblue")
+        .attr("opacity", 0.7);
+
+
+    // SEEDS
+    // mark group layout
+    let markGroupSeeds = svg.append("g")
+        .attr("id", "marks")
+        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.topChartHeight})`);
+    // mapping data to actual marks
+    let seedMarks = markGroupSeeds.selectAll("circle").data(filteredRecords, d => d["id"]);
+    seedMarks.join(enter => enter.append("circle"))
+        .attr("cx", d => xScale(d["year"]))
+        .attr("cy", d => yScaleBottom(d["seed"]))
+        .attr("r", 4)
+        .attr("fill", "orange")
         .attr("opacity", 0.7);
     
     // create a button for each school
