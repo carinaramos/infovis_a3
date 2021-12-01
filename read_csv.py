@@ -71,6 +71,6 @@ for row in rows:
 
 			
 with open("wins_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(wins_by_school, indent = 4, sorted=True))
+    outfile.write(json.dumps(wins_by_school, indent = 4, sort_keys=True))
 with open("seeds_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(seeds_by_school, indent = 4, sorted=True))
+    outfile.write(json.dumps(seeds_by_school, indent = 4, sort_keys=True))
