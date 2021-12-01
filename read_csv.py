@@ -32,29 +32,27 @@ LOSER = 7
 # printing the field names
 print('Field names are:' + ', '.join(field for field in fields))
 
-schools = {}
+records = {}
 for row in rows:
 	winner = row[WINNER]
 	loser = row[LOSER]
+	year_string = row[DATE][-2:]
+	year = f"19{year_string}" if int(year_string) > 84 else f"20{year_string}"
 	
 	# set the seed for both teams
 	for team, seed_index in zip([winner, loser], [WINNING_SEED, LOSING_SEED]):
-		if team not in schools:
-			schools[team] = {"name": team, "seeds" : [17]*32, "wins" : [0]*32}
-		year = int(row[DATE][-2:])
-		year_index = (year - 85) if (year > 84) else (year + 15)
+		if (team + " " + year) not in records:
+			records[team + " " + year] = {"id": (team + " " + year), "name": team, "year" : int(year), "seed" : int(row[seed_index]), "wins" : 0}
 		# set the seed for that year
-		schools[team]["seeds"][year_index] = int(row[seed_index])
-	
-	# add 1 to the winning team's win record for that year
-	schools[winner]["wins"][year_index] += 1
+		if team == winner:
+			records[team + " " + year]["wins"] += 1
 
 # TEST 
-years = list(range(85, 100)) + list(range(0, 17))
-for year in years:
-	year_index = (year - 85) if (year > 84) else (year + 15)
-	print(year, year_index)
+# years = list(range(85, 100)) + list(range(0, 17))
+# for year in years:
+# 	year_index = (year - 85) if (year > 84) else (year + 15)
+# 	print(year, year_index)
 
 			
-with open("schools.json", "w") as outfile:
-    outfile.write(json.dumps(list(schools.values()), indent = 1, sort_keys=True))
+with open("records.json", "w") as outfile:
+    outfile.write(json.dumps(list(records.values()), indent = 1, sort_keys=True))
