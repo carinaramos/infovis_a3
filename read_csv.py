@@ -32,45 +32,29 @@ LOSER = 7
 # printing the field names
 print('Field names are:' + ', '.join(field for field in fields))
 
-# record total number of wins per year for each team who won at least one game
-wins_by_school = {}
+schools = {}
 for row in rows:
 	winner = row[WINNER]
-	# if this school isn't in the dictionary yet, add it & set initial values of zero wins for all years
-	if winner not in wins_by_school:
-		wins_by_school[winner] = {}
-		for year in map(lambda a: f"19{a:02}", range(85, 100)):
-			wins_by_school[winner][year] = 0
-		for year in map(lambda a: f"20{a:02}", range(0, 17)):
-			wins_by_school[winner][year] = 0
-	win_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
-	wins_by_school[winner][win_year] += 1
-
-seeds_by_school = {}
-for row in rows:
-	winner = row[WINNER]
-	# if this school isn't in the dictionary yet, add it & set initial values of zero wins for all years
-	if winner not in seeds_by_school:
-		seeds_by_school[winner] = {}
-		for year in map(lambda a: f"19{a:02}", range(85, 100)):
-			seeds_by_school[winner][year] = 17
-		for year in map(lambda a: f"20{a:02}", range(0, 17)):
-			seeds_by_school[winner][year] = 17
-	seed_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
-	seeds_by_school[winner][seed_year] = int(row[WINNING_SEED])
 	loser = row[LOSER]
-	# if this school isn't in the dictionary yet, add it & set initial values of zero wins for all years
-	if loser not in seeds_by_school:
-		seeds_by_school[loser] = {}
-		for year in map(lambda a: f"19{a:02}", range(85, 100)):
-			seeds_by_school[loser][year] = 17
-		for year in map(lambda a: f"20{a:02}", range(0, 17)):
-			seeds_by_school[loser][year] = 17
-	seed_year = f"19{row[DATE][-2:]}" if int(row[DATE][-2:]) > 84 else f"20{row[DATE][-2:]}"
-	seeds_by_school[loser][seed_year] = int(row[LOSING_SEED])
+	
+	# set the seed for both teams
+	for team, seed_index in zip([winner, loser], [WINNING_SEED, LOSING_SEED]):
+		if team not in schools:
+			schools[team] = {"name": team, "seeds" : [17]*32, "wins" : [0]*32}
+		year = int(row[DATE][-2:])
+		year_index = (year - 85) if (year > 84) else (year + 15)
+		# set the seed for that year
+		schools[team]["seeds"][year_index] = int(row[seed_index])
+	
+	# add 1 to the winning team's win record for that year
+	schools[winner]["wins"][year_index] += 1
+
+# TEST 
+years = list(range(85, 100)) + list(range(0, 17))
+for year in years:
+	year_index = (year - 85) if (year > 84) else (year + 15)
+	print(year, year_index)
 
 			
-with open("wins_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(wins_by_school, indent = 4, sort_keys=True))
-with open("seeds_by_school.json", "w") as outfile:
-    outfile.write(json.dumps(seeds_by_school, indent = 4, sort_keys=True))
+with open("schools.json", "w") as outfile:
+    outfile.write(json.dumps(list(schools.values()), indent = 1, sort_keys=True))

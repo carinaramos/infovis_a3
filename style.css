@@ -1,0 +1,8 @@
+#container {
+    box-sizing: border-box;
+    width: 1040px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 17px;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.3);
+  }
