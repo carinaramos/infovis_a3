@@ -41,11 +41,14 @@ for row in rows:
 	
 	# set the seed for both teams
 	for team, seed_index in zip([winner, loser], [WINNING_SEED, LOSING_SEED]):
-		if (team + " " + year) not in records:
-			records[team + " " + year] = {"id": (team + " " + year), "name": team, "year" : int(year), "seed" : int(row[seed_index]), "wins" : 0}
+		if team not in records: 
+			records[team] = {}
+		if (year) not in records[team]:
+			color = "#FFCB05" if team == "Michigan" else "steelblue"
+			records[team][year] = {"id": (team + " " + year), "name": team, "year" : int(year), "seed" : int(row[seed_index]), "wins" : 0, "color": color}
 		# set the seed for that year
 		if team == winner:
-			records[team + " " + year]["wins"] += 1
+			records[team][year]["wins"] += 1
 
 # TEST 
 # years = list(range(85, 100)) + list(range(0, 17))
@@ -53,6 +56,29 @@ for row in rows:
 # 	year_index = (year - 85) if (year > 84) else (year + 15)
 # 	print(year, year_index)
 
+for team_name in records:
+	streaks = []
+	current_streak = []
+	for year in range(1985, 2018):
+		# if the team was seeded in that year
+		if str(year) in records[team_name]:
+			if len(current_streak) == 0:
+				# print(type(records[team_name]))
+				current_streak.append(records[team_name][str(year)])
+			else:
+				if current_streak[-1]["year"] != year - 1:
+					streaks.append(current_streak)
+					current_streak = []
+				current_streak.append(records[team_name][str(year)])
+		else:
+			if len(current_streak) > 0:
+				streaks.append(current_streak)
+				current_streak = []
+	records[team_name] = streaks
+					
+
+
+
 			
-with open("records.json", "w") as outfile:
-    outfile.write(json.dumps(list(records.values()), indent = 1, sort_keys=True))
+with open("streaks_by_team.json", "w") as outfile:
+    outfile.write(json.dumps(records, indent = 1, sort_keys=True))
