@@ -173,3 +173,5 @@ async function ready() {
 };
 
 ready();
+
+export default layout;
