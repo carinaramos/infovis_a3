@@ -100,8 +100,7 @@ async function ready() {
         console.log(selectedSchools);
         for (var i=0; i<selectedSchools.length; i++){ 
             drawColumns(selectedSchools[i]);
-        }
-        
+        }  
     }
     
     function range(start, end) {

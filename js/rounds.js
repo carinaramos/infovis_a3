@@ -38,7 +38,7 @@ var data = [{
 async function ready() {
     var records = await d3.json("records.json");
     var streaks = await d3.json("streaks_by_team.json");
-    var selectedSchools = ["Georgetown", "Michigan", "Villanova"];
+    var selectedSchools = [];
     var allSchools = Object.keys(streaks)
     console.log(allSchools.length)
     function filterData() {
@@ -92,30 +92,31 @@ function drawMarks(schoolName) {
 }
 
 
-    function handleSchoolClick(event) {
-        svg.selectAll("rect").remove()
-        // svg.selectAll(".connector").remove()
-        var btn = event.target;
-        var schoolName = btn.innerHTML;
-        if (btn.style.backgroundColor !== "white") {
-            btn.style.backgroundColor = "white";
-            btn.style.color = "grey";
-        } else {
-            btn.style.backgroundColor = streaks[schoolName][0][0].color;
-            btn.style.color = "white";
-        }
-        const index = selectedSchools.indexOf(schoolName);
-        if (index > -1) {
-            selectedSchools.splice(index, 1);
-        } else {
-            selectedSchools.push(schoolName);
-        }
-        console.log(selectedSchools);
-        for (var i=0; i<selectedSchools.length; i++){ 
-            drawColumns(selectedSchools[i]);
-        }
-        
+function handleSchoolClick(event) {
+    svg.selectAll("circle").remove()
+    svg.selectAll(".connector").remove()
+    var btn = event.target;
+    var schoolName = btn.innerHTML;
+    console.log("clicked " + schoolName);
+    if (btn.style.backgroundColor !== "white") {
+        btn.style.backgroundColor = "white";
+        btn.style.color = "grey";
+    } else {
+        btn.style.backgroundColor = streaks[schoolName][0][0].color;
+        btn.style.color = "white";
     }
+    const index = selectedSchools.indexOf(schoolName);
+    if (index > -1) {
+        selectedSchools.splice(index, 1);
+    } else {
+        selectedSchools.push(schoolName);
+    }
+    console.log("selected schools: " + selectedSchools);
+    for (var i = 0; i < selectedSchools.length; i++){
+        console.log("drawing: " + selectedSchools[i]);
+        drawMarks(selectedSchools[i]);
+    }
+}
     
     function range(start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
