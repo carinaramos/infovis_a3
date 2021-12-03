@@ -30,7 +30,7 @@ LOSING_SEED = 6
 LOSER = 7
 
 # printing the field names
-print('Field names are:' + ', '.join(field for field in fields))
+# print('Field names are:' + ', '.join(field for field in fields))
 
 records = {}
 for row in rows:
@@ -49,12 +49,6 @@ for row in rows:
 		# set the seed for that year
 		if team == winner:
 			records[team][year]["wins"] += 1
-
-# TEST 
-# years = list(range(85, 100)) + list(range(0, 17))
-# for year in years:
-# 	year_index = (year - 85) if (year > 84) else (year + 15)
-# 	print(year, year_index)
 
 for team_name in records:
 	streaks = []
@@ -75,10 +69,6 @@ for team_name in records:
 				streaks.append(current_streak)
 				current_streak = []
 	records[team_name] = streaks
-					
-
-
-
 			
 with open("streaks_by_team.json", "w") as outfile:
     outfile.write(json.dumps(records, indent = 1, sort_keys=True))
