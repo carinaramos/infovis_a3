@@ -1,5 +1,5 @@
 const layout = {
-    width: 2200,
+    width: 1000,
     height: 510,
     chartWidth: 600,
     chartHeight: 400,
@@ -10,15 +10,29 @@ const layout = {
     bumper: 10
   };
 
-const roundNames = {
-    0: "Round of 64",
-    1: "Round of 32",
-    2: "Sweet Sixteen",
-    3: "Elite 8",
-    4: "Final Four",
-    5: "Championship",
-    6: "Winner"
-}
+// adapted from https://stackoverflow.com/questions/44872048/d3-js-how-can-i-create-an-axis-with-custom-labels-and-customs-ticks
+var data = [{
+    wins: 0,
+    val: "Round of 64"
+}, {
+    wins: 1,
+    val: "Round of 32"
+}, {
+    wins: 2,
+    val: "Sweet Sixteen"
+}, {
+    wins: 3,
+    val: "Elite 8"
+}, {
+    wins: 4,
+    val: "Final Four"
+}, {
+    wins: 5,
+    val: "Championship"
+}, {
+    wins: 6,
+    val: "Winner"
+}];
 
 
 async function ready() {
@@ -102,7 +116,9 @@ async function ready() {
     let yAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
         .call(d3.axisLeft(yScale))
-        .call(d3.axisLeft(yScale).ticks(6));
+        .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
+            return d + ": " + data[i].val;
+          }));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
