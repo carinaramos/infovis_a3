@@ -5,7 +5,7 @@ const layout = {
     chartHeight: 400,
     marginTop: 20,
     marginBottom: 40,
-    marginLeft: 40,
+    marginLeft: 80,
     marginRight: 10,
     bumper: 10
   };
@@ -117,7 +117,7 @@ async function ready() {
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
-            return d + ": " + data[i].val;
+            return data[i].val;
           }));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
