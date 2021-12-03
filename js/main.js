@@ -1,7 +1,7 @@
 const layout = {
     width: 1000,
     height: 510,
-    chartWidth: 600,
+    chartWidth: 850,
     chartHeight: 400,
     marginTop: 20,
     marginBottom: 40,
