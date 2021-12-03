@@ -146,7 +146,7 @@ async function ready() {
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight},${layout.height - layout.marginBottom + 15})`)
+      .attr("transform", `translate(${layout.width - layout.marginRight - 555},${layout.height - layout.marginBottom + 15})`)
       .text("Seed")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
