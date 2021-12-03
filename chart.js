@@ -5,7 +5,7 @@ const layout = {
     chartHeight: 400,
     marginTop: 20,
     marginBottom: 40,
-    marginLeft: 80,
+    marginLeft: 120,
     marginRight: 10,
     bumper: 10
   };
@@ -123,7 +123,7 @@ async function ready() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft + 5},${layout.marginTop + 5})`)
+        .attr("transform", `translate(${layout.marginLeft - 120},${layout.marginTop + 200})`)
         .text("Wins")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
