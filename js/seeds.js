@@ -1,7 +1,7 @@
 const layout = {
     width: 1000,
     height: 510,
-    chartWidth: 600,
+    chartWidth: 850,
     chartHeight: 400,
     marginTop: 20,
     marginBottom: 40,
@@ -9,31 +9,6 @@ const layout = {
     marginRight: 10,
     bumper: 10
   };
-
-// adapted from https://stackoverflow.com/questions/44872048/d3-js-how-can-i-create-an-axis-with-custom-labels-and-customs-ticks
-var data = [{
-    wins: 0,
-    val: "Round of 64"
-}, {
-    wins: 1,
-    val: "Round of 32"
-}, {
-    wins: 2,
-    val: "Sweet Sixteen"
-}, {
-    wins: 3,
-    val: "Elite 8"
-}, {
-    wins: 4,
-    val: "Final Four"
-}, {
-    wins: 5,
-    val: "Championship"
-}, {
-    wins: 6,
-    val: "Winner"
-}];
-
 
 async function ready() {
     var records = await d3.json("records.json");
@@ -109,22 +84,20 @@ async function ready() {
     }
     // SCALE FUNCTIONS
     // y scale and axis for wins by team
-    let yData =  range(0, 6);
+    let yData =  range(1, 16);
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
         .range([layout.chartHeight, 0]);
     let yAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
         .call(d3.axisLeft(yScale))
-        .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
-            return data[i].val;
-          }));
+        .call(d3.axisLeft(yScale).ticks(16));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 120},${layout.marginTop + 200})`)
-        .text("Wins")
+        .attr("transform", `translate(${layout.marginLeft - 100},${layout.marginTop + 200})`)
+        .text("Seed")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
     
@@ -132,22 +105,26 @@ async function ready() {
     function range(start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
     }
-    let xData =  range(1, 16);
+    
+    function range(start, end) {
+        return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    }
+    let xData =  range(1985, 2016);
     let xScale = d3.scaleLinear()
-        .domain([d3.min(xData) - 1, d3.max(xData)])
+        .domain([d3.min(xData) - 0.5, d3.max(xData) + 0.5])
         .range([0, layout.chartWidth]);
     let xAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
         .call(d3.axisBottom(xScale))
-        .call(d3.axisBottom(xScale).ticks(16).tickFormat(d3.format("d")));
+        .call(d3.axisBottom(xScale).ticks(32).tickFormat(d3.format("d")));
 
     xAxis.selectAll("text").attr("fill", "gray");
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight - 555},${layout.height - layout.marginBottom + 15})`)
-      .text("Seed")
+      .attr("transform", `translate(${layout.width - layout.marginRight - 430},${layout.height - layout.marginBottom + 15})`)
+      .text("Year")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")
