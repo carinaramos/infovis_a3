@@ -38,7 +38,7 @@ var data = [{
 async function ready() {
     var records = await d3.json("records.json");
     var streaks = await d3.json("streaks_by_team.json");
-    var selectedSchools = ["Georgetown"];
+    var selectedSchools = ["Georgetown", "Michigan", "Villanova"];
     var allSchools = Object.keys(streaks)
     console.log(allSchools.length)
     function filterData() {
@@ -55,28 +55,41 @@ async function ready() {
         .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
 
     
-    function drawColumns(schoolName) {
-        // var schoolRecords = records.filter(record => record.name === schoolName);
-        var schoolStreaks = streaks[schoolName];
-        console.log(schoolStreaks)
-        var schoolColor = schoolStreaks[0][0].color
-        var schoolRecords = []
-        for (var i=0 ; i<schoolStreaks.length ; i++) {
-            schoolRecords = schoolStreaks[i]
-
-            svg.selectAll(".bar")
-                .data(schoolRecords, d => d["id"])
-                .enter().append("rect")
-                .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
-                .attr("class", "bar")
-                .attr("fill", "steelblue")
-                .attr("opacity", 0.7)
-                .attr("x", d => xScale(d["seed"]))
-                .attr("y", d => yScale(d["wins"]))
-                .attr("width", 10)
-                .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); });
-        }
+function drawMarks(schoolName) {
+    // var schoolRecords = records.filter(record => record.name === schoolName);
+    var schoolStreaks = streaks[schoolName];
+    console.log(schoolStreaks)
+    var schoolColor = schoolStreaks[0][0].color
+    var schoolRecords = []
+    for (var i=0 ; i<schoolStreaks.length ; i++) {
+        schoolRecords = schoolStreaks[i]
+        // NUM WINS
+        // line connecting points
+    svg.append("path")
+        .datum(schoolRecords, d => d["id"])
+        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+        .attr("class", "connector")
+        .attr("fill", "none")
+        .attr("stroke", schoolColor)
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line()
+        .x(d => xScale(d["year"]))
+        .y(d => yScale(d["wins"]))
+        )
+        // mark group layout
+        let markGroupWins = svg.append("g")
+        .attr("id", "marks")
+        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`);
+        // mapping data to actual marks
+        let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
+        winMarks.join(enter => enter.append("circle"))
+        .attr("cx", d => xScale(d["year"]))
+        .attr("cy", d => yScale(d["wins"]))
+        .attr("r", d => d["wins"] === 6? 10 : 4)
+        .attr("fill", d => d["color"])
+        .attr("opacity", 0.7);
     }
+}
 
 
     function handleSchoolClick(event) {
@@ -108,7 +121,7 @@ async function ready() {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
     }
     // SCALE FUNCTIONS
-    // y scale and axis for wins by team
+    // y scale and axis for wins by team    
     let yData =  range(0, 6);
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
@@ -150,7 +163,7 @@ async function ready() {
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight - 430},${layout.height - layout.marginBottom + 15})`)
+      .attr("transform", `translate(${layout.width - layout.marginRight - 500},${layout.height - layout.marginBottom + 15})`)
       .text("Year")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
@@ -170,10 +183,12 @@ async function ready() {
         }
         counter += 1;                                
     }
+
     for (var i=0; i < selectedSchools.length; i++) {
-        drawColumns(selectedSchools[i]);
-        // drawColumns(allSchools[i]);
-    }
+        console.log(selectedSchools[i]);
+        // console.log(streaks[selectedSchools[i]])
+        drawMarks(selectedSchools[i]);
+    }   
 };
 
 ready();
