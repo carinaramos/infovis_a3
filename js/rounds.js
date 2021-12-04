@@ -1,11 +1,11 @@
-const layout = {
+const roundLayout = {
     width: 1000,
-    height: 510,
-    chartWidth: 850,
-    chartHeight: 400,
-    marginTop: 20,
+    height: 220,
+    chartWidth: 450,
+    chartHeight: 160,
+    marginTop: 30,
     marginBottom: 40,
-    marginLeft: 120,
+    marginLeft: 80,
     marginRight: 10,
     bumper: 10
   };
@@ -48,11 +48,11 @@ async function ready() {
     console.log(filteredRecords.length);
 
     // create\ background paper for plot
-    let svg = d3.select("#vis").append("svg");
-    svg.attr("id", "my-vis")
-        .attr("width", layout.width)
-        .attr("height", layout.height)
-        .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
+    let svg = d3.select("#round").append("svg");
+    svg.attr("id", "my-round")
+        .attr("width", roundLayout.width)
+        .attr("height", roundLayout.height)
+        .attr("viewBox", [0, 0, roundLayout.width, roundLayout.height].join(" "));
 
     
 function drawMarks(schoolName) {
@@ -67,7 +67,7 @@ function drawMarks(schoolName) {
         // line connecting points
     svg.append("path")
         .datum(schoolRecords, d => d["id"])
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
         .attr("class", "connector")
         .attr("fill", "none")
         .attr("stroke", schoolColor)
@@ -76,10 +76,10 @@ function drawMarks(schoolName) {
         .x(d => xScale(d["year"]))
         .y(d => yScale(d["wins"]))
         )
-        // mark group layout
+        // mark group roundLayout
         let markGroupWins = svg.append("g")
         .attr("id", "marks")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`);
+        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`);
         // mapping data to actual marks
         let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
         winMarks.join(enter => enter.append("circle"))
@@ -126,9 +126,9 @@ function handleSchoolClick(event) {
     let yData =  range(0, 6);
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
-        .range([layout.chartHeight, 0]);
+        .range([roundLayout.chartHeight, 0]);
     let yAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
             return data[i].val;
@@ -137,7 +137,7 @@ function handleSchoolClick(event) {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 120},${layout.marginTop + 200})`)
+        .attr("transform", `translate(${roundLayout.marginLeft - 70},${roundLayout.marginTop - 20})`)
         .text("Wins")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
@@ -153,19 +153,19 @@ function handleSchoolClick(event) {
     let xData =  range(1985, 2016);
     let xScale = d3.scaleLinear()
         .domain([d3.min(xData) - 0.5, d3.max(xData) + 0.5])
-        .range([0, layout.chartWidth]);
+        .range([0, roundLayout.chartWidth]);
     let xAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
+        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop + roundLayout.chartHeight})`)
         .call(d3.axisBottom(xScale))
-        .call(d3.axisBottom(xScale).ticks(32).tickFormat(d3.format("d")));
+        .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d")));
 
     xAxis.selectAll("text").attr("fill", "gray");
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight - 500},${layout.height - layout.marginBottom + 15})`)
-      .text("Year")
+      .attr("transform", `translate(${roundLayout.width - roundLayout.marginRight - 500},${roundLayout.height - roundLayout.marginBottom + 15})`)
+    //   .text("Year")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")

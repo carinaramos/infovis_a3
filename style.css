@@ -1,11 +1,12 @@
 #container {
     box-sizing: border-box;
     width: 1350;
-    margin: 30px auto;
+    height: 800;
+    margin: 10px auto;
     padding: 20px;
     border-radius: 17px;
     box-shadow: 0 0 13px 0 rgba(0,0,0,0.3);
-  }
+}
 
 #list {
   display: flex;
@@ -22,3 +23,22 @@
   background-color: #FFCB05;
   color: white;
 } */
+
+#content {
+  display: flex;
+  flex-direction: row;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  background-color: pink;
+  width: 55%;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: blue;
+  width: 45%;
+}

@@ -1,11 +1,11 @@
 const layout = {
     width: 1000,
-    height: 510,
-    chartWidth: 850,
-    chartHeight: 400,
-    marginTop: 20,
-    marginBottom: 40,
-    marginLeft: 120,
+    height: 550,
+    chartWidth: 620,
+    chartHeight: 450,
+    marginTop: 50,
+    marginBottom: 20,
+    marginLeft: 80,
     marginRight: 10,
     bumper: 10
   };
@@ -48,8 +48,8 @@ async function ready() {
     console.log(filteredRecords.length);
 
     // create\ background paper for plot
-    let svg = d3.select("#vis").append("svg");
-    svg.attr("id", "my-vis")
+    let svg = d3.select("#main").append("svg");
+    svg.attr("id", "my-main")
         .attr("width", layout.width)
         .attr("height", layout.height)
         .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
@@ -73,7 +73,7 @@ async function ready() {
                 .attr("opacity", 0.7)
                 .attr("x", d => xScale(d["seed"]))
                 .attr("y", d => yScale(d["wins"]))
-                .attr("width", 10)
+                .attr("width", 5)
                 .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); });
         }
     }
@@ -122,8 +122,8 @@ async function ready() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 120},${layout.marginTop + 200})`)
-        .text("Wins")
+        .attr("transform", `translate(${layout.marginLeft - 70},${layout.marginTop - 20})`)
+        .text("Round")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
     
@@ -145,26 +145,26 @@ async function ready() {
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight - 430},${layout.height - layout.marginBottom + 15})`)
+      .attr("transform", `translate(${layout.chartWidth/2 + layout.marginLeft},${layout.height - layout.marginBottom + 15})`)
       .text("Seed")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")
     // create a button for each school
-    var listDiv = document.getElementById('list');
-    var counter = 0;
-    for (var i=0; i < records.length; i++) {
-        var button = document.createElement('button');
-        button.classList = 'btn btn-outline-secondary';
-        button.id = records[i]["name"];
-        // button.style.backgroundColor = ...
-        button.innerHTML = records[i]["name"];
-        button.onclick = handleSchoolClick;
-        if (counter < 8) {
-            listDiv.appendChild(button); 
-        }
-        counter += 1;                                
-    }
+    // var listDiv = document.getElementById('list');
+    // var counter = 0;
+    // for (var i=0; i < records.length; i++) {
+    //     var button = document.createElement('button');
+    //     button.classList = 'btn btn-outline-secondary';
+    //     button.id = records[i]["name"];
+    //     // button.style.backgroundColor = ...
+    //     button.innerHTML = records[i]["name"];
+    //     button.onclick = handleSchoolClick;
+    //     if (counter < 8) {
+    //         listDiv.appendChild(button); 
+    //     }
+    //     counter += 1;                                
+    // }
     for (var i=0; i < selectedSchools.length; i++) {
         drawColumns(selectedSchools[i]);
         // drawColumns(allSchools[i]);

@@ -1,14 +1,15 @@
-const layout = {
+const seedLayout = {
     width: 1000,
-    height: 510,
-    chartWidth: 850,
-    chartHeight: 400,
-    marginTop: 20,
+    height: 220,
+    chartWidth: 450,
+    chartHeight: 160,
+    marginTop: 30,
     marginBottom: 40,
-    marginLeft: 120,
+    marginLeft: 80,
     marginRight: 10,
     bumper: 10
   };
+
 
 async function ready() {
     var records = await d3.json("records.json");
@@ -23,11 +24,11 @@ async function ready() {
     console.log(filteredRecords.length);
 
     // create\ background paper for plot
-    let svg = d3.select("#vis").append("svg");
-    svg.attr("id", "my-vis")
-        .attr("width", layout.width)
-        .attr("height", layout.height)
-        .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
+    let svg = d3.select("#seed").append("svg");
+    svg.attr("id", "my-seed")
+        .attr("width", seedLayout.width)
+        .attr("height", seedLayout.height)
+        .attr("viewBox", [0, 0, seedLayout.width, seedLayout.height].join(" "));
 
     
     function drawColumns(schoolName) {
@@ -42,14 +43,14 @@ async function ready() {
             svg.selectAll(".bar")
                 .data(schoolRecords, d => d["id"])
                 .enter().append("rect")
-                .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+                .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`)
                 .attr("class", "bar")
                 .attr("fill", "steelblue")
                 .attr("opacity", 0.7)
                 .attr("x", d => xScale(d["seed"]))
                 .attr("y", d => yScale(d["wins"]))
                 .attr("width", 10)
-                .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); });
+                .attr("height", function(d) { return seedLayout.chartHeight - yScale(d.wins); });
         }
     }
 
@@ -87,16 +88,16 @@ async function ready() {
     let yData =  range(1, 16);
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
-        .range([layout.chartHeight, 0]);
+        .range([seedLayout.chartHeight, 0]);
     let yAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+        .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(16));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 100},${layout.marginTop + 200})`)
+        .attr("transform", `translate(${seedLayout.marginLeft - 70},${seedLayout.marginTop - 20})`)
         .text("Seed")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
@@ -112,19 +113,19 @@ async function ready() {
     let xData =  range(1985, 2016);
     let xScale = d3.scaleLinear()
         .domain([d3.min(xData) - 0.5, d3.max(xData) + 0.5])
-        .range([0, layout.chartWidth]);
+        .range([0, seedLayout.chartWidth]);
     let xAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
+        .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop + seedLayout.chartHeight})`)
         .call(d3.axisBottom(xScale))
-        .call(d3.axisBottom(xScale).ticks(32).tickFormat(d3.format("d")));
+        .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d")));
 
     xAxis.selectAll("text").attr("fill", "gray");
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.width - layout.marginRight - 430},${layout.height - layout.marginBottom + 15})`)
-      .text("Year")
+      .attr("transform", `translate(${seedLayout.width - seedLayout.marginRight - 430},${seedLayout.height - seedLayout.marginBottom + 15})`)
+    //   .text("Year")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")
