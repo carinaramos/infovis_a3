@@ -61,7 +61,7 @@ async function ready() {
                     tooltip.transition()		
                         .duration(100)		
                         .style("opacity", .9);
-                    tooltip.html(d.year + "<br/>"  + d.seed + "-seeded" + "<br/>"  +"Lost to XXX (90-78)")	
+                    tooltip.html(d.year + "<br/>"  + d.seed + " seed")	
                         .style("left", (e.x) + "px")		
                         .style("top", (e.y)+ "px");	
                     })					

@@ -79,6 +79,8 @@ for team_name in records:
 			if len(current_streak) == 0:
 				# print(type(records[team_name]))
 				stats = records[team_name][str(year)]
+				predictedWins = expected_wins[stats["seed"]] if expected_wins[stats["seed"]] != 5.5 else "5 to 6"
+				stats["predictedWins"] = str(predictedWins)
 				stats["score"] = stats["wins"] - expected_wins[stats["seed"]] 
 				current_streak.append(stats)
 			else:
@@ -86,6 +88,8 @@ for team_name in records:
 					streaks.append(current_streak)
 					current_streak = []
 				stats = records[team_name][str(year)]
+				predictedWins = expected_wins[stats["seed"]] if expected_wins[stats["seed"]] != 5.5 else "5 to 6"
+				stats["predictedWins"] = str(predictedWins)
 				stats["score"] = stats["wins"] - expected_wins[stats["seed"]] 
 				current_streak.append(stats)
 		else:

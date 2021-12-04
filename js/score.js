@@ -21,6 +21,14 @@ async function ready() {
         .attr("height", scoreLayout.height)
         .attr("viewBox", [0, 0, scoreLayout.width, scoreLayout.height].join(" "));
 
+    svg.append('line')
+        .style("stroke", "gray")
+        .style("stroke-width", 0.5)
+        .attr("x1", 80)
+        .attr("y1", 85)
+        .attr("x2", 530)
+        .attr("y2", 85); 
+
     
         function drawMarks(schoolName) {
             var schoolStreaks = streaks[schoolName];
@@ -60,7 +68,7 @@ async function ready() {
                     tooltip.transition()		
                         .duration(100)		
                         .style("opacity", .9);
-                    tooltip.html(d.year + "<br/>"  + "Lost to XXX (90-78)")	
+                    tooltip.html(d.year + "<br/>" + "Predicted to win " + d.predictedWins + " games " + (d.predictedWins == d.wins ? "and" : "but") + " actually won " + d.wins)	
                         .style("left", (e.x) + "px")		
                         .style("top", (e.y)+ "px");	
                     })					

@@ -86,7 +86,7 @@ async function ready() {
     // y scale and axis for wins by team
     let yData =  range(0, 6);
     let yScale = d3.scaleLinear()
-        .domain([d3.min(yData) - 0.9, d3.max(yData)])
+        .domain([d3.min(yData) - 0.2, d3.max(yData)])
         .range([layout.chartHeight, 0]);
     let yAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
@@ -96,7 +96,10 @@ async function ready() {
           }));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
-    var counter = 0;
+
+    // yAxis.selectAll('.major text')
+    //     .attr('transform', 'translate( 16 ,0)');
+    
     svg.append("text")
         .attr("transform", `translate(${layout.marginLeft - 70},${layout.marginTop + layout.chartHeight/2}) rotate(270)`)
         .text("Round Knocked Out")

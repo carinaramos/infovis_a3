@@ -34,6 +34,15 @@ var data = [{
     val: "Winner"
 }];
 
+var wins_to_round = {
+    0: "Round of 64",
+    1:"Round of 32",
+    2:"Sweet Sixteen",
+    3: "Elite 8",
+    4:"Final Four",
+    5:"Championship",
+    6:"Winner"
+};
 
 async function ready() {
     var streaks = await d3.json("streaks_by_team_with_scores.json");
@@ -89,7 +98,7 @@ function drawMarks(schoolName) {
             tooltip.transition()		
                 .duration(100)		
                 .style("opacity", .9);
-            tooltip.html(d.year + "<br/>"  + "Lost to XXX (90-78)")	
+            tooltip.html(d.year + "<br/>"  + (d.wins === 6 ? "" : "Lost in ") + wins_to_round[d.wins])	
                 .style("left", (e.x) + "px")		
                 .style("top", (e.y)+ "px");	
             })					
