@@ -1,8 +1,8 @@
 const roundLayout = {
     width: 1000,
-    height: 220,
+    height: 160,
     chartWidth: 450,
-    chartHeight: 160,
+    chartHeight: 110,
     marginTop: 30,
     marginBottom: 40,
     marginLeft: 80,

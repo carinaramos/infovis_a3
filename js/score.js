@@ -1,8 +1,8 @@
 const scoreLayout = {
     width: 1000,
-    height: 220,
+    height: 160,
     chartWidth: 450,
-    chartHeight: 160,
+    chartHeight: 110,
     marginTop: 30,
     marginBottom: 40,
     marginLeft: 80,
@@ -91,7 +91,7 @@ async function ready() {
     let yAxis = svg.append("g")
         .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
-        .call(d3.axisLeft(yScale).ticks(16));
+        .call(d3.axisLeft(yScale).ticks(8));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;

@@ -1,7 +1,7 @@
 #container {
     box-sizing: border-box;
     width: 1350;
-    height: 800;
+    height: 640;
     margin: 10px auto;
     padding: 20px;
     border-radius: 17px;
@@ -32,13 +32,13 @@
 #main {
   display: flex;
   flex-direction: column;
-  background-color: pink;
   width: 55%;
 }
 
 #sidebar {
   display: flex;
   flex-direction: column;
-  background-color: blue;
+  gap: 20px;
   width: 45%;
+  /* height: 100% */
 }
