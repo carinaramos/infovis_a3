@@ -38,7 +38,7 @@ var data = [{
 async function ready() {
     var records = await d3.json("records.json");
     var streaks = await d3.json("streaks_by_team.json");
-    var selectedSchools = [];
+    var selectedSchools = ["Michigan"];
     var allSchools = Object.keys(streaks)
     // console.log(allSchools.length)
     function filterData() {
@@ -76,22 +76,39 @@ function drawMarks(schoolName) {
         .x(d => xScale(d["year"]))
         .y(d => yScale(d["wins"]))
         )
-        // mark group roundLayout
-        let markGroupWins = svg.append("g")
+    
+    // mark group roundLayout
+    let markGroupWins = svg.append("g")
         .attr("id", "marks")
         .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`);
-        // mapping data to actual marks
-        let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
-        winMarks.join(enter => enter.append("circle"))
+    // mapping data to actual marks
+    let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
+    winMarks.join(enter => enter.append("circle"))
         .attr("cx", d => xScale(d["year"]))
         .attr("cy", d => yScale(d["wins"]))
-        .attr("r", d => d["wins"] === 6? 10 : 4)
+        .attr("r", 4)
         .attr("fill", d => d["color"])
-        .attr("opacity", 0.7);
+        .attr("opacity", 0.7)
+        .on("mouseover", function(e, d) {
+            // console.log(d);
+            // console.log(e);
+            tooltip.transition()		
+                .duration(100)		
+                .style("opacity", .9);
+            tooltip.html(d.year + "<br/>"  + "Lost to XXX (90-78)")	
+                .style("left", (e.x) + "px")		
+                .style("top", (e.y)+ "px");	
+            })					
+        .on("mouseout", function(d) {		
+            tooltip.transition()		
+                .duration(50)		
+                .style("opacity", 0);	
+        });
     }
+    
 }
 
-
+    
 function handleSchoolClick(event) {
     svg.selectAll("circle").remove()
     svg.selectAll(".connector").remove()
@@ -184,7 +201,10 @@ function handleSchoolClick(event) {
     //     }
     //     counter += 1;                                
     // }
-
+    var tooltip = d3.select("#round").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
+    
     for (var i=0; i < selectedSchools.length; i++) {
         // console.log(selectedSchools[i]);
         // // console.log(streaks[selectedSchools[i]])

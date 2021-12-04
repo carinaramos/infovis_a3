@@ -64,8 +64,8 @@ async function ready() {
             .attr("width", 8)
             .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); })
             .on("mouseover", function(e, d) {
-                console.log(d);
-                console.log(e);
+                // console.log(d);
+                // console.log(e);
                 tooltip.transition()		
                     .duration(100)		
                     .style("opacity", .9);
@@ -128,7 +128,7 @@ async function ready() {
       .attr("font-size", 14)
       .attr("fill", "dimgray")
 
-    // Define the div for the tooltip
+    // Define the div for the tooltip - https://bl.ocks.org/d3noob/a22c42db65eb00d4e369
     var tooltip = d3.select("#main").append("div")	
         .attr("class", "tooltip")				
         .style("opacity", 0);
