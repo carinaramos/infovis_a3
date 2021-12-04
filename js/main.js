@@ -1,11 +1,11 @@
 const layout = {
     width: 1000,
     height: 550,
-    chartWidth: 620,
-    chartHeight: 450,
-    marginTop: 50,
+    chartWidth: 600,
+    chartHeight: 460,
+    marginTop: 40,
     marginBottom: 20,
-    marginLeft: 80,
+    marginLeft: 90,
     marginRight: 10,
     bumper: 10
   };
@@ -36,17 +36,9 @@ var data = [{
 
 
 async function ready() {
-    var records = await d3.json("records.json");
-    var streaks = await d3.json("streaks_by_team.json");
+    var years = await d3.json("years_with_scores.json");
     var selectedSchools = ["Georgetown"];
-    var allSchools = Object.keys(streaks)
-    console.log(allSchools.length)
-    function filterData() {
-        return records.filter(record => selectedSchools.includes(record.name));
-    }
-    var filteredRecords = filterData();
-    console.log(filteredRecords.length);
-
+    var selectedYear = ["2000"];
     // create\ background paper for plot
     let svg = d3.select("#main").append("svg");
     svg.attr("id", "my-main")
@@ -55,52 +47,37 @@ async function ready() {
         .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
 
     
-    function drawColumns(schoolName) {
-        // var schoolRecords = records.filter(record => record.name === schoolName);
-        var schoolStreaks = streaks[schoolName];
-        console.log(schoolStreaks)
-        var schoolColor = schoolStreaks[0][0].color
-        var schoolRecords = []
-        for (var i=0 ; i<schoolStreaks.length ; i++) {
-            schoolRecords = schoolStreaks[i]
-
-            svg.selectAll(".bar")
-                .data(schoolRecords, d => d["id"])
-                .enter().append("rect")
-                .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
-                .attr("class", "bar")
-                .attr("fill", "steelblue")
-                .attr("opacity", 0.7)
-                .attr("x", d => xScale(d["seed"]))
-                .attr("y", d => yScale(d["wins"]))
-                .attr("width", 5)
-                .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); });
-        }
-    }
-
-
-    function handleSchoolClick(event) {
-        svg.selectAll("rect").remove()
-        // svg.selectAll(".connector").remove()
-        var btn = event.target;
-        var schoolName = btn.innerHTML;
-        if (btn.style.backgroundColor !== "white") {
-            btn.style.backgroundColor = "white";
-            btn.style.color = "grey";
-        } else {
-            btn.style.backgroundColor = streaks[schoolName][0][0].color;
-            btn.style.color = "white";
-        }
-        const index = selectedSchools.indexOf(schoolName);
-        if (index > -1) {
-            selectedSchools.splice(index, 1);
-        } else {
-            selectedSchools.push(schoolName);
-        }
-        console.log(selectedSchools);
-        for (var i=0; i<selectedSchools.length; i++){ 
-            drawColumns(selectedSchools[i]);
-        }  
+    function drawColumns(year) {
+        var teams = years[year];
+        // console.log(teams)
+       
+        
+        svg.selectAll("bar")
+            .data(teams)
+            .enter().append("rect")
+            .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+            .attr("class", "bar")
+            .attr("fill", d => d["color"])
+            .attr("opacity", 0.7)
+            .attr("x", d => xScale(d["seed"])+ d.offset*8)
+            .attr("y", d => yScale(d["wins"]))
+            .attr("width", 8)
+            .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); })
+            .on("mouseover", function(e, d) {
+                console.log(d);
+                console.log(e);
+                tooltip.transition()		
+                    .duration(100)		
+                    .style("opacity", .9);
+                tooltip.html(d.name + "<br/>"  + "Lost to XXX (90-78)")	
+                    .style("left", (e.x) + "px")		
+                    .style("top", (e.y)+ "px");	
+                })					
+            .on("mouseout", function(d) {		
+                tooltip.transition()		
+                    .duration(50)		
+                    .style("opacity", 0);	
+            });
     }
     
     function range(start, end) {
@@ -122,8 +99,8 @@ async function ready() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 70},${layout.marginTop - 20})`)
-        .text("Round")
+        .attr("transform", `translate(${layout.marginLeft - 70},${layout.marginTop + layout.chartHeight/2}) rotate(270)`)
+        .text("Round Knocked Out")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
     
@@ -133,7 +110,7 @@ async function ready() {
     }
     let xData =  range(1, 16);
     let xScale = d3.scaleLinear()
-        .domain([d3.min(xData) - 1, d3.max(xData)])
+        .domain([d3.min(xData), d3.max(xData)])
         .range([0, layout.chartWidth]);
     let xAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
@@ -150,25 +127,14 @@ async function ready() {
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")
-    // create a button for each school
-    // var listDiv = document.getElementById('list');
-    // var counter = 0;
-    // for (var i=0; i < records.length; i++) {
-    //     var button = document.createElement('button');
-    //     button.classList = 'btn btn-outline-secondary';
-    //     button.id = records[i]["name"];
-    //     // button.style.backgroundColor = ...
-    //     button.innerHTML = records[i]["name"];
-    //     button.onclick = handleSchoolClick;
-    //     if (counter < 8) {
-    //         listDiv.appendChild(button); 
-    //     }
-    //     counter += 1;                                
-    // }
-    for (var i=0; i < selectedSchools.length; i++) {
-        drawColumns(selectedSchools[i]);
-        // drawColumns(allSchools[i]);
-    }
+
+    // Define the div for the tooltip
+    var tooltip = d3.select("#main").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
+
+            
+    drawColumns(selectedYear);
 };
 
 ready();

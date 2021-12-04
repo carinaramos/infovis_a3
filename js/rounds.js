@@ -40,12 +40,12 @@ async function ready() {
     var streaks = await d3.json("streaks_by_team.json");
     var selectedSchools = [];
     var allSchools = Object.keys(streaks)
-    console.log(allSchools.length)
+    // console.log(allSchools.length)
     function filterData() {
         return records.filter(record => selectedSchools.includes(record.name));
     }
     var filteredRecords = filterData();
-    console.log(filteredRecords.length);
+    // console.log(filteredRecords.length);
 
     // create\ background paper for plot
     let svg = d3.select("#round").append("svg");
@@ -58,7 +58,7 @@ async function ready() {
 function drawMarks(schoolName) {
     // var schoolRecords = records.filter(record => record.name === schoolName);
     var schoolStreaks = streaks[schoolName];
-    console.log(schoolStreaks)
+    // console.log(schoolStreaks)
     var schoolColor = schoolStreaks[0][0].color
     var schoolRecords = []
     for (var i=0 ; i<schoolStreaks.length ; i++) {
@@ -97,7 +97,7 @@ function handleSchoolClick(event) {
     svg.selectAll(".connector").remove()
     var btn = event.target;
     var schoolName = btn.innerHTML;
-    console.log("clicked " + schoolName);
+    // console.log("clicked " + schoolName);
     if (btn.style.backgroundColor !== "white") {
         btn.style.backgroundColor = "white";
         btn.style.color = "grey";
@@ -111,9 +111,9 @@ function handleSchoolClick(event) {
     } else {
         selectedSchools.push(schoolName);
     }
-    console.log("selected schools: " + selectedSchools);
+    // console.log("selected schools: " + selectedSchools);
     for (var i = 0; i < selectedSchools.length; i++){
-        console.log("drawing: " + selectedSchools[i]);
+        // console.log("drawing: " + selectedSchools[i]);
         drawMarks(selectedSchools[i]);
     }
 }
@@ -170,24 +170,24 @@ function handleSchoolClick(event) {
       .attr("font-size", 14)
       .attr("fill", "dimgray")
     // create a button for each school
-    var listDiv = document.getElementById('list');
-    var counter = 0;
-    for (var i=0; i < records.length; i++) {
-        var button = document.createElement('button');
-        button.classList = 'btn btn-outline-secondary';
-        button.id = records[i]["name"];
-        // button.style.backgroundColor = ...
-        button.innerHTML = records[i]["name"];
-        button.onclick = handleSchoolClick;
-        if (counter < 8) {
-            listDiv.appendChild(button); 
-        }
-        counter += 1;                                
-    }
+    // var listDiv = document.getElementById('list');
+    // var counter = 0;
+    // for (var i=0; i < records.length; i++) {
+    //     var button = document.createElement('button');
+    //     button.classList = 'btn btn-outline-secondary';
+    //     button.id = records[i]["name"];
+    //     // button.style.backgroundColor = ...
+    //     button.innerHTML = records[i]["name"];
+    //     button.onclick = handleSchoolClick;
+    //     if (counter < 8) {
+    //         listDiv.appendChild(button); 
+    //     }
+    //     counter += 1;                                
+    // }
 
     for (var i=0; i < selectedSchools.length; i++) {
-        console.log(selectedSchools[i]);
-        // console.log(streaks[selectedSchools[i]])
+        // console.log(selectedSchools[i]);
+        // // console.log(streaks[selectedSchools[i]])
         drawMarks(selectedSchools[i]);
     }   
 };

@@ -15,12 +15,12 @@ async function ready() {
     var streaks = await d3.json("streaks_by_team.json");
     var selectedSchools = ["Georgetown"];
     var allSchools = Object.keys(streaks)
-    console.log(allSchools.length)
+    // console.log(allSchools.length)
     function filterData() {
         return records.filter(record => selectedSchools.includes(record.name));
     }
     var filteredRecords = filterData();
-    console.log(filteredRecords.length);
+    // console.log(filteredRecords.length);
 
     // create\ background paper for plot
     let svg = d3.select("#score").append("svg");
@@ -33,24 +33,24 @@ async function ready() {
     function drawColumns(schoolName) {
         // var schoolRecords = records.filter(record => record.name === schoolName);
         var schoolStreaks = streaks[schoolName];
-        console.log(schoolStreaks)
+        // // console.log(schoolStreaks)
         var schoolColor = schoolStreaks[0][0].color
         var schoolRecords = []
-        for (var i=0 ; i<schoolStreaks.length ; i++) {
-            schoolRecords = schoolStreaks[i]
+        // for (var i=0 ; i<schoolStreaks.length ; i++) {
+        //     schoolRecords = schoolStreaks[i]
 
-            svg.selectAll(".bar")
-                .data(schoolRecords, d => d["id"])
-                .enter().append("rect")
-                .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
-                .attr("class", "bar")
-                .attr("fill", "steelblue")
-                .attr("opacity", 0.7)
-                .attr("x", d => xScale(d["seed"]))
-                .attr("y", d => yScale(d["wins"]))
-                .attr("width", 10)
-                .attr("height", function(d) { return scoreLayout.chartHeight - yScale(d.wins); });
-        }
+        //     svg.selectAll(".bar")
+        //         .data(schoolRecords, d => d["id"])
+        //         .enter().append("rect")
+        //         .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
+        //         .attr("class", "bar")
+        //         .attr("fill", "steelblue")
+        //         .attr("opacity", 0.7)
+        //         .attr("x", d => xScale(d["seed"]))
+        //         .attr("y", d => yScale(d["wins"]))
+        //         .attr("width", 10)
+        //         .attr("height", function(d) { return scoreLayout.chartHeight - yScale(d.wins); });
+        // }
     }
 
 
@@ -72,7 +72,7 @@ async function ready() {
         } else {
             selectedSchools.push(schoolName);
         }
-        console.log(selectedSchools);
+        // console.log(selectedSchools);
         for (var i=0; i<selectedSchools.length; i++){ 
             drawColumns(selectedSchools[i]);
         }
