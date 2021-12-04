@@ -59,13 +59,12 @@ async function ready() {
             .attr("class", "bar")
             .attr("fill", d => d["color"])
             .attr("opacity", 0.7)
-            .attr("x", d => xScale(d["seed"])+ d.offset*8)
+            .attr("x", d => xScale(d["seed"])+ d.offset*10)
             .attr("y", d => yScale(d["wins"]))
             .attr("width", 8)
+            .attr('rx', 0)
             .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); })
             .on("mouseover", function(e, d) {
-                // console.log(d);
-                // console.log(e);
                 tooltip.transition()		
                     .duration(100)		
                     .style("opacity", .9);

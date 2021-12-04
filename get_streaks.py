@@ -50,6 +50,26 @@ for row in rows:
 		if team == winner:
 			records[team][year]["wins"] += 1
 
+# seed -> expected wins
+expected_wins = {
+    1: 5.5,
+    2: 4,
+    3: 2,
+    4: 2,
+    5: 1,
+    6: 1,
+    7: 1,
+    8: 1,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 0,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 0,
+}
+
 for team_name in records:
 	streaks = []
 	current_streak = []
@@ -58,17 +78,21 @@ for team_name in records:
 		if str(year) in records[team_name]:
 			if len(current_streak) == 0:
 				# print(type(records[team_name]))
-				current_streak.append(records[team_name][str(year)])
+				stats = records[team_name][str(year)]
+				stats["score"] = stats["wins"] - expected_wins[stats["seed"]] 
+				current_streak.append(stats)
 			else:
 				if current_streak[-1]["year"] != year - 1:
 					streaks.append(current_streak)
 					current_streak = []
-				current_streak.append(records[team_name][str(year)])
+				stats = records[team_name][str(year)]
+				stats["score"] = stats["wins"] - expected_wins[stats["seed"]] 
+				current_streak.append(stats)
 		else:
 			if len(current_streak) > 0:
 				streaks.append(current_streak)
 				current_streak = []
 	records[team_name] = streaks
 			
-with open("streaks_by_team.json", "w") as outfile:
+with open("streaks_by_team_with_scores.json", "w") as outfile:
     outfile.write(json.dumps(records, indent = 1, sort_keys=True))

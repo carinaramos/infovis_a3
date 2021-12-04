@@ -36,15 +36,9 @@ var data = [{
 
 
 async function ready() {
-    var records = await d3.json("records.json");
-    var streaks = await d3.json("streaks_by_team.json");
+    var streaks = await d3.json("streaks_by_team_with_scores.json");
     var selectedSchools = ["Michigan"];
-    var allSchools = Object.keys(streaks)
-    // console.log(allSchools.length)
-    function filterData() {
-        return records.filter(record => selectedSchools.includes(record.name));
-    }
-    var filteredRecords = filterData();
+
     // console.log(filteredRecords.length);
 
     // create\ background paper for plot

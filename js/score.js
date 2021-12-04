@@ -11,16 +11,8 @@ const scoreLayout = {
   };
 
 async function ready() {
-    var records = await d3.json("records.json");
-    var streaks = await d3.json("streaks_by_team.json");
-    var selectedSchools = ["Georgetown"];
-    var allSchools = Object.keys(streaks)
-    // console.log(allSchools.length)
-    function filterData() {
-        return records.filter(record => selectedSchools.includes(record.name));
-    }
-    var filteredRecords = filterData();
-    // console.log(filteredRecords.length);
+    var streaks = await d3.json("streaks_by_team_with_scores.json");
+    var selectedSchools = ["Michigan"];
 
     // create\ background paper for plot
     let svg = d3.select("#score").append("svg");
@@ -30,28 +22,56 @@ async function ready() {
         .attr("viewBox", [0, 0, scoreLayout.width, scoreLayout.height].join(" "));
 
     
-    function drawColumns(schoolName) {
-        // var schoolRecords = records.filter(record => record.name === schoolName);
-        var schoolStreaks = streaks[schoolName];
-        // // console.log(schoolStreaks)
-        var schoolColor = schoolStreaks[0][0].color
-        var schoolRecords = []
-        // for (var i=0 ; i<schoolStreaks.length ; i++) {
-        //     schoolRecords = schoolStreaks[i]
-
-        //     svg.selectAll(".bar")
-        //         .data(schoolRecords, d => d["id"])
-        //         .enter().append("rect")
-        //         .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
-        //         .attr("class", "bar")
-        //         .attr("fill", "steelblue")
-        //         .attr("opacity", 0.7)
-        //         .attr("x", d => xScale(d["seed"]))
-        //         .attr("y", d => yScale(d["wins"]))
-        //         .attr("width", 10)
-        //         .attr("height", function(d) { return scoreLayout.chartHeight - yScale(d.wins); });
-        // }
-    }
+        function drawMarks(schoolName) {
+            var schoolStreaks = streaks[schoolName];
+            var schoolColor = schoolStreaks[0][0].color
+            var schoolRecords = []
+            for (var i=0 ; i<schoolStreaks.length ; i++) {
+                schoolRecords = schoolStreaks[i]
+                // NUM WINS
+                // line connecting points
+            svg.append("path")
+                .datum(schoolRecords, d => d["id"])
+                .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
+                .attr("class", "connector")
+                .attr("fill", "none")
+                .attr("stroke", schoolColor)
+                .attr("stroke-width", 1.5)
+                .attr("d", d3.line()
+                .x(d => xScale(d["year"]))
+                .y(d => yScale(d["score"]))
+                )
+            
+            // mark group scoreLayout
+            let markGroupWins = svg.append("g")
+                .attr("id", "marks")
+                .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`);
+            // mapping data to actual marks
+            let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
+            winMarks.join(enter => enter.append("circle"))
+                .attr("cx", d => xScale(d["year"]))
+                .attr("cy", d => yScale(d["score"]))
+                .attr("r", 4)
+                .attr("fill", d => d["color"])
+                .attr("opacity", 0.7)
+                .on("mouseover", function(e, d) {
+                    // console.log(d);
+                    // console.log(e);
+                    tooltip.transition()		
+                        .duration(100)		
+                        .style("opacity", .9);
+                    tooltip.html(d.year + "<br/>"  + "Lost to XXX (90-78)")	
+                        .style("left", (e.x) + "px")		
+                        .style("top", (e.y)+ "px");	
+                    })					
+                .on("mouseout", function(d) {		
+                    tooltip.transition()		
+                        .duration(50)		
+                        .style("opacity", 0);	
+                });
+            }
+            
+        }
 
 
     function handleSchoolClick(event) {
@@ -74,7 +94,7 @@ async function ready() {
         }
         // console.log(selectedSchools);
         for (var i=0; i<selectedSchools.length; i++){ 
-            drawColumns(selectedSchools[i]);
+            drawMark(selectedSchools[i]);
         }
         
     }
@@ -143,9 +163,13 @@ async function ready() {
     //     }
     //     counter += 1;                                
     // }
+      
+    var tooltip = d3.select("#round").append("div")	
+        .attr("class", "tooltip")				
+        .style("opacity", 0);
+      
     for (var i=0; i < selectedSchools.length; i++) {
-        drawColumns(selectedSchools[i]);
-        // drawColumns(allSchools[i]);
+        drawMarks(selectedSchools[i]);
     }
 };
 
