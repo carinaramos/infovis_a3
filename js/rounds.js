@@ -154,8 +154,8 @@ async function roundsReady() {
 };
 
 function removeRounds(schoolName) {
-    roundsSvg.selectAll("#round-marks-" + schoolName.replaceAll(' ', '-')).remove()
-    roundsSvg.selectAll(".round-lines-" + schoolName.replaceAll(' ', '-')).remove()
+    roundsSvg.selectAll("#round-marks-" + strFormat(schoolName)).remove()
+    roundsSvg.selectAll(".round-lines-" + strFormat(schoolName)).remove()
 };
 
 function drawRounds(schoolName) {
@@ -169,7 +169,7 @@ function drawRounds(schoolName) {
         
         // draw points
         let markGroupWins = roundsSvg.append("g")
-            .attr("id", "round-marks-" + schoolName.replaceAll(' ', '-'))
+            .attr("id", "round-marks-" + strFormat(schoolName))
             .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`);
         let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
         winMarks.join(enter => enter.append("circle"))
@@ -198,7 +198,7 @@ function drawRounds(schoolName) {
         roundsSvg.append("path")
             .datum(schoolRecords, d => d["id"])
             .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
-            .attr("class", "round-lines-" + schoolName.replaceAll(' ', '-'))
+            .attr("class", "round-lines-" + strFormat(schoolName))
             .attr("fill", "none")
             .attr("stroke", schoolColor)
             .attr("stroke-opacity", 0.7)

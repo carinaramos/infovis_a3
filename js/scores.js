@@ -14,6 +14,10 @@ function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx)
 }
 
+function strFormat(schoolName) {
+    return schoolName.replaceAll(' ', '-').replaceAll("'", '-').replaceAll(',', '-').replaceAll('.', '-').replace('&','')
+}
+
 let scoresSvg = d3.select("#score").append("svg");
 
 let xDataScores = range(1985, 2016);
@@ -129,8 +133,8 @@ async function scoresReady() {
 };
 
 function removeScores(schoolName) {
-    scoresSvg.selectAll("#score-marks-" + schoolName.replaceAll(' ', '-')).remove()
-    scoresSvg.selectAll(".score-lines-" + schoolName.replaceAll(' ', '-')).remove()
+    scoresSvg.selectAll("#score-marks-" + strFormat(schoolName)).remove()
+    scoresSvg.selectAll(".score-lines-" + strFormat(schoolName)).remove()
 };
 
 function drawScores(schoolName) {
@@ -143,7 +147,7 @@ function drawScores(schoolName) {
     
         // draw points
         let markGroupWins = scoresSvg.append("g")
-            .attr("id", "score-marks-" + schoolName.replaceAll(' ', '-'))
+            .attr("id", "score-marks-" + strFormat(schoolName))
             .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`);
         let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
         winMarks.join(enter => enter.append("circle"))
@@ -172,7 +176,7 @@ function drawScores(schoolName) {
         scoresSvg.append("path")
             .datum(schoolRecords, d => d["id"])
             .attr("transform", `translate(${scoreLayout.marginLeft},${scoreLayout.marginTop})`)
-            .attr("class", "score-lines-" + schoolName.replaceAll(' ', '-'))
+            .attr("class", "score-lines-" + strFormat(schoolName))
             .attr("fill", "none")
             .attr("stroke", schoolColor)
             .attr("stroke-opacity", 0.7)

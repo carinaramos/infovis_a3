@@ -112,8 +112,8 @@ async function seedsReady() {
 
 
 function removeSeeds(schoolName) {
-    seedsSvg.selectAll("#seed-marks-" + schoolName.replaceAll(' ', '-')).remove()
-    seedsSvg.selectAll(".seed-lines-" + schoolName.replaceAll(' ', '-')).remove()
+    seedsSvg.selectAll("#seed-marks-" + strFormat(schoolName)).remove()
+    seedsSvg.selectAll(".seed-lines-" + strFormat(schoolName)).remove()
 };
 
 function drawSeeds(schoolName) {
@@ -127,7 +127,7 @@ function drawSeeds(schoolName) {
         seedsSvg.append("path")
             .datum(schoolRecords, d => d["id"])
             .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`)
-            .attr("class", "seed-lines-" + schoolName.replaceAll(' ', '-'))
+            .attr("class", "seed-lines-" + strFormat(schoolName))
             .attr("fill", "none")
             .attr("stroke", schoolColor)
             .attr("stroke-opacity", 0.7)
@@ -139,7 +139,7 @@ function drawSeeds(schoolName) {
         
         // draw points
         let markGroupWins = seedsSvg.append("g")
-            .attr("id", "seed-marks-" + schoolName.replaceAll(' ', '-'))
+            .attr("id", "seed-marks-" + strFormat(schoolName))
             .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`);
         let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
         winMarks.join(enter => enter.append("circle"))

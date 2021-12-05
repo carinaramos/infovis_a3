@@ -95,3 +95,14 @@ div.seed-tooltip {
 #year-selector {
   width: 90px;
 }
+
+#team-selector {
+  width: 100px;
+  height: 40px;
+}
+
+.btn {
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 6px;
+}

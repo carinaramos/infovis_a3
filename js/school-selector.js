@@ -20,7 +20,6 @@ async function initTeamSelect() {
         teamSelect.value = "Select a team";
     }
     teamSelect.onchange = function() {handleTeamClick(this)};
-    // console.log(Object.keys(streaks).length);
     for (const team of Object.keys(streaks)) {
         var opt = document.createElement('option');
         opt.id = team;
@@ -28,15 +27,8 @@ async function initTeamSelect() {
         teamSelect.appendChild(opt);                             
     }
 }
+
+
+
+
 initTeamSelect();
-// create a button for each school
-// var listDiv = document.getElementById('selected-teams');
-// for (var i=0; i < 2017; i++) {
-//     var opt = document.createElement('option');
-//     // opt.classList = 'btn btn-outline-secondary';
-//     opt.id = records[i]["name"];
-//     // button.style.backgroundColor = ...
-//     opt.innerHTML = records[i]["name"];
-//     opt = handleSchoolClick;
-//     listDiv.appendChild(opt);                             
-// }

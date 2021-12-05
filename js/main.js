@@ -30,13 +30,44 @@ const updateSelectedSchools = (schoolName) => {
         drawScores(schoolName);
         drawSeeds(schoolName);
         drawRounds(schoolName);
+        createButton(schoolName);
     } else {
         selectedSchools.splice(index, 1);
         removeScores(schoolName);
         removeSeeds(schoolName);
         removeRounds(schoolName);
+        removeButton(schoolName);
     }
     console.log("now selected schools is: " + selectedSchools);
+}
+
+const handleTeamButtonClick = (btn) => {
+    console.log("btn.value: " + btn.value);
+    var teamName = btn.innerHTML
+    if (teamName.includes('amp;')) {
+        teamName = teamName.replace('amp;', '')
+    }
+    console.log("calling updateSelectedSchools on " + teamName);
+    updateSelectedSchools(teamName);
+}
+
+// create a button for each school
+const createButton = (teamName) => {
+    var teamButtons = document.getElementById('team-buttons');
+    var btn = document.createElement('button');
+    btn.classList = 'btn btn-outline-secondary btn-sm';
+    btn.value = teamName;
+    btn.id = strFormat(teamName) + "-button";
+    // button.style.backgroundColor = ...
+    btn.onclick = function() {handleTeamButtonClick(this)};
+    btn.innerHTML = teamName;
+    teamButtons.appendChild(btn);                             
+}
+
+// remove school button
+const removeButton = (teamName) => {
+    var teamButton = document.getElementById(strFormat(teamName) + "-button");
+    teamButton.parentNode.removeChild(teamButton);        
 }
 
 var rounds = [{
