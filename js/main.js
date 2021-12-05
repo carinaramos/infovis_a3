@@ -16,14 +16,19 @@ var streaks = {}
 var selectedSchools = [];
 var selectedYear = ["2000"];
 
+
 const updateSelectedSchools = (schoolName) => {
     const index = selectedSchools.indexOf(schoolName);
     if (index == -1) {
         selectedSchools.push(schoolName);
         drawScores(schoolName);
+        drawSeeds(schoolName);
+        drawRounds(schoolName);
     } else {
         selectedSchools.splice(index, 1);
         removeScores(schoolName);
+        removeSeeds(schoolName);
+        removeRounds(schoolName);
     }
     console.log("now selected schools is: " + selectedSchools);
 }
