@@ -101,6 +101,10 @@ div.seed-tooltip {
   height: 40px;
 }
 
+#team-buttons {
+  min-height: 40px;
+}
+
 .btn {
   margin-left: 4px;
   margin-right: 4px;
@@ -110,3 +114,4 @@ div.seed-tooltip {
 .btn:hover {
   background-color: 'pink';
 }
+

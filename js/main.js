@@ -1,9 +1,9 @@
 const mainLayout = {
     width: 1000,
-    height: 550,
+    height: 630,
     chartWidth: 632,
-    chartHeight: 460,
-    marginTop: 40,
+    chartHeight: 462,
+    marginTop: 120,
     marginBottom: 20,
     marginLeft: 90,
     marginRight: 10,
@@ -60,6 +60,14 @@ const createButton = (teamName) => {
     btn.id = strFormat(teamName) + "-button";
     btn.style.borderColor = colors[teamName];
     btn.style.color = colors[teamName];
+    btn.addEventListener("mouseover", function() {
+        document.getElementById(strFormat(teamName) + "-button").style.backgroundColor = "lightgrey";
+        // document.getElementById(strFormat(teamName) + "-button").innerHTML = "Remove";
+    });
+    btn.addEventListener("mouseout", function() {
+        document.getElementById(strFormat(teamName) + "-button").style.backgroundColor = "white";
+        // document.getElementById(strFormat(teamName) + "-button").innerHTML = document.getElementById(strFormat(teamName) + "-button").value + ' ✕';
+    });
     btn.onclick = function() {handleTeamButtonClick(this)};
     btn.innerHTML = teamName + ' ✕';
     teamButtons.appendChild(btn);                             
@@ -182,7 +190,7 @@ function drawColumns(year) {
             mainTooltip.transition()		
                 .duration(100)		
                 .style("opacity", .9);
-            mainTooltip.html(d.name + "<br/>"  + "Lost to XXX (90-78)")	
+            mainTooltip.html(d.name)	
                 .style("left", (e.x) + "px")		
                 .style("top", (e.y)+ "px");	
             })					

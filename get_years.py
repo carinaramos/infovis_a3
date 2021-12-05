@@ -88,14 +88,16 @@ with open("years_with_colors.json", "w") as outfile:
     outfile.write(json.dumps(years_with_scores, indent = 1))
 
 # TEST DATA LOAD
-# with open("years.json", "r") as infile:
-#     years_obj = json.load(infile)
+with open("years_with_colors.json", "r") as infile:
+    years_obj = json.load(infile)
 
-# total_wrong = 0
-# for year in years_obj.keys():
-#     for idx, seed_dict in enumerate(years_obj[year]):
-#         if len(seed_dict) != 4:
-#             total_wrong += 1
-#             print(f"year: {year} seed: {idx+1} num at this seed: {len(seed_dict)}")
-#             # pprint.pprint(seed_dict)
-# print(total_wrong)
+total_wrong = 0
+for year in years_obj.keys():
+    for idx, seed_dict in enumerate(years_obj[year]):
+        if len(seed_dict) != 4:
+            total_wrong += 1
+            print(f"{year} seed: {idx+1} has {len(seed_dict)} at this seed")
+            # pprint.pprint(seed_dict)
+
+with open("years_with_colors.json", "r") as infile:
+    years_obj = json.load(infile)
