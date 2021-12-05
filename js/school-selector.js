@@ -1,6 +1,6 @@
 
 var clearButton = document.getElementById('clear-button');
-clearButton.onclick = function() {handleClear(this)};
+clearButton.onclick = function() {handleClear()};
 
 const handleClear = () => {
     console.log("clearing all teams");
@@ -9,6 +9,7 @@ const handleClear = () => {
         updateSelectedSchools(selectedSchools[0]);
     }
 }
+
 
 // // create a button for each school
 // var listDiv = document.getElementById('year-selector');
