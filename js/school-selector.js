@@ -1,7 +1,5 @@
-
+// create clear button
 var clearButton = document.getElementById('clear-button');
-clearButton.onclick = function() {handleClear()};
-
 const handleClear = () => {
     console.log("clearing all teams");
     const numSchoolsSelected = selectedSchools.length;
@@ -9,11 +7,31 @@ const handleClear = () => {
         updateSelectedSchools(selectedSchools[0]);
     }
 }
+clearButton.onclick = function() {handleClear()};
 
 
-// // create a button for each school
-// var listDiv = document.getElementById('year-selector');
-// for (var i=1985; i < 2017; i++) {
+// create team selector
+async function initTeamSelect() {
+    streaks = await d3.json("team_streaks_with_colors.json");
+    var teamSelect = document.getElementById('team-selector');
+    const handleTeamClick = (selectElement) => {
+        console.log("selected team: " + selectElement.value);
+        updateSelectedSchools(selectElement.value);
+        teamSelect.value = "Select a team";
+    }
+    teamSelect.onchange = function() {handleTeamClick(this)};
+    // console.log(Object.keys(streaks).length);
+    for (const team of Object.keys(streaks)) {
+        var opt = document.createElement('option');
+        opt.id = team;
+        opt.innerHTML = team;
+        teamSelect.appendChild(opt);                             
+    }
+}
+initTeamSelect();
+// create a button for each school
+// var listDiv = document.getElementById('selected-teams');
+// for (var i=0; i < 2017; i++) {
 //     var opt = document.createElement('option');
 //     // opt.classList = 'btn btn-outline-secondary';
 //     opt.id = records[i]["name"];
