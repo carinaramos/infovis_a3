@@ -8,9 +8,8 @@ const roundLayout = {
     marginLeft: 105,
     marginRight: 10,
     bumper: 10
-  };
+};
 
-// adapted from https://stackoverflow.com/questions/44872048/d3-js-how-can-i-create-an-axis-with-custom-labels-and-customs-ticks
 var data = [{
     wins: 0,
     val: "Round of 64"
@@ -43,102 +42,101 @@ var wins_to_round = {
     5:"Championship",
     6:"Winner"
 };
+var roundsTooltip = d3.select("#round").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
 
-async function ready() {
-    var streaks = await d3.json("team_streaks_with_colors.json");
-    var selectedSchools = ["Michigan", "Ohio State"];
-
-    // console.log(filteredRecords.length);
-
-    // create\ background paper for plot
-    let svg = d3.select("#round").append("svg");
-    svg.attr("id", "my-round")
+async function roundsReady() {
+    
+    // create background paper for plot
+    let roundsSvg = d3.select("#round").append("svg");
+    roundsSvg.attr("id", "my-round")
         .attr("width", roundLayout.width)
         .attr("height", roundLayout.height)
         .attr("viewBox", [0, 0, roundLayout.width, roundLayout.height].join(" "));
 
     
-function drawMarks(schoolName) {
-    // var schoolRecords = records.filter(record => record.name === schoolName);
-    var schoolStreaks = streaks[schoolName];
-    // console.log(schoolStreaks)
-    var schoolColor = schoolStreaks[0][0].color
-    var schoolRecords = []
-    for (var i=0 ; i<schoolStreaks.length ; i++) {
-        schoolRecords = schoolStreaks[i]
-        // NUM WINS
-        // line connecting points
-    svg.append("path")
-        .datum(schoolRecords, d => d["id"])
-        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
-        .attr("class", "connector")
-        .attr("fill", "none")
-        .attr("stroke", schoolColor)
-        .attr("stroke-opacity", 0.7)
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-        .x(d => xScale(d["year"]))
-        .y(d => yScale(d["wins"]))
-        )
-    
-    // mark group roundLayout
-    let markGroupWins = svg.append("g")
-        .attr("id", "marks")
-        .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`);
-    // mapping data to actual marks
-    let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
-    winMarks.join(enter => enter.append("circle"))
-        .attr("cx", d => xScale(d["year"]))
-        .attr("cy", d => yScale(d["wins"]))
-        .attr("r", 3)
-        .attr("fill", d => d["color"])
-        .attr("opacity", 0.7)
-        .on("mouseover", function(e, d) {
-            // console.log(d);
-            // console.log(e);
-            tooltip.transition()		
-                .duration(100)		
-                .style("opacity", .9);
-            tooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + (d.wins === 6 ? "" : "Lost in ") + wins_to_round[d.wins])	
-                .style("left", (e.x) + "px")		
-                .style("top", (e.y)+ "px");	
-            })					
-        .on("mouseout", function(d) {		
-            tooltip.transition()		
-                .duration(50)		
-                .style("opacity", 0);	
-        });
+    function drawMarks(schoolName) {
+        // var schoolRecords = records.filter(record => record.name === schoolName);
+        var schoolStreaks = streaks[schoolName];
+        // console.log(schoolStreaks)
+        var schoolColor = schoolStreaks[0][0].color
+        var schoolRecords = []
+        for (var i=0 ; i<schoolStreaks.length ; i++) {
+            schoolRecords = schoolStreaks[i]
+            // NUM WINS
+            // line connecting points
+        roundsSvg.append("path")
+            .datum(schoolRecords, d => d["id"])
+            .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
+            .attr("class", "connector")
+            .attr("fill", "none")
+            .attr("stroke", schoolColor)
+            .attr("stroke-opacity", 0.7)
+            .attr("stroke-width", 1.5)
+            .attr("d", d3.line()
+            .x(d => xScale(d["year"]))
+            .y(d => yScale(d["wins"]))
+            )
+        
+        // mark group roundLayout
+        let markGroupWins = roundsSvg.append("g")
+            .attr("id", "marks")
+            .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`);
+        // mapping data to actual marks
+        let winMarks = markGroupWins.selectAll("circle").data(schoolRecords, d => d["id"]);
+        winMarks.join(enter => enter.append("circle"))
+            .attr("cx", d => xScale(d["year"]))
+            .attr("cy", d => yScale(d["wins"]))
+            .attr("r", 3)
+            .attr("fill", d => d["color"])
+            .attr("opacity", 0.7)
+            .on("mouseover", function(e, d) {
+                // console.log(d);
+                // console.log(e);
+                roundsTooltip.transition()		
+                    .duration(100)		
+                    .style("opacity", .9);
+                roundsTooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + (d.wins === 6 ? "" : "Lost in ") + wins_to_round[d.wins])	
+                    .style("left", (e.x) + "px")		
+                    .style("top", (e.y)+ "px");	
+                })					
+            .on("mouseout", function(d) {		
+                roundsTooltip.transition()		
+                    .duration(50)		
+                    .style("opacity", 0);	
+            });
+        }
+        
     }
-    
-}
 
-    
-function handleSchoolClick(event) {
-    svg.selectAll("circle").remove()
-    svg.selectAll(".connector").remove()
-    var btn = event.target;
-    var schoolName = btn.innerHTML;
-    // console.log("clicked " + schoolName);
-    if (btn.style.backgroundColor !== "white") {
-        btn.style.backgroundColor = "white";
-        btn.style.color = "grey";
-    } else {
-        btn.style.backgroundColor = streaks[schoolName][0][0].color;
-        btn.style.color = "white";
+        
+    function handleSchoolClick(event) {
+        roundsSvg.selectAll("circle").remove()
+        roundsSvg.selectAll(".connector").remove()
+        var btn = event.target;
+        var schoolName = btn.innerHTML;
+        // console.log("clicked " + schoolName);
+        if (btn.style.backgroundColor !== "white") {
+            btn.style.backgroundColor = "white";
+            btn.style.color = "grey";
+        } else {
+            btn.style.backgroundColor = streaks[schoolName][0][0].color;
+            btn.style.color = "white";
+        }
+        const index = selectedSchools.indexOf(schoolName);
+        if (index > -1) {
+            selectedSchools.splice(index, 1);
+        } else {
+            selectedSchools.push(schoolName);
+        }
+        // console.log("selected schools: " + selectedSchools);
+        for (var i = 0; i < selectedSchools.length; i++){
+            // console.log("drawing: " + selectedSchools[i]);
+            drawMarks(selectedSchools[i]);
+        }
     }
-    const index = selectedSchools.indexOf(schoolName);
-    if (index > -1) {
-        selectedSchools.splice(index, 1);
-    } else {
-        selectedSchools.push(schoolName);
-    }
-    // console.log("selected schools: " + selectedSchools);
-    for (var i = 0; i < selectedSchools.length; i++){
-        // console.log("drawing: " + selectedSchools[i]);
-        drawMarks(selectedSchools[i]);
-    }
-}
-    
+        
     function range(start, end) {
         return Array(end - start + 1).fill().map((_, idx) => start + idx)
     }
@@ -148,16 +146,16 @@ function handleSchoolClick(event) {
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
         .range([roundLayout.chartHeight, 0]);
-    let yAxis = svg.append("g")
+    let yAxis = roundsSvg.append("g")
         .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
             return data[i].val;
-          }));
+        }));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
-    svg.append("text")
+    roundsSvg.append("text")
         .attr("transform", `translate(${roundLayout.marginLeft - 95},${roundLayout.marginTop - 15})`)
         .text("Round Knocked Out")
         .attr("font-size", 11)
@@ -175,7 +173,7 @@ function handleSchoolClick(event) {
     let xScale = d3.scaleLinear()
         .domain([d3.min(xData) - 0.5, d3.max(xData) + 0.5])
         .range([0, roundLayout.chartWidth]);
-    let xAxis = svg.append("g")
+    let xAxis = roundsSvg.append("g")
         .attr("transform", `translate(${roundLayout.marginLeft},${roundLayout.marginTop + roundLayout.chartHeight})`)
         .call(d3.axisBottom(xScale))
         .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d")));
@@ -184,12 +182,12 @@ function handleSchoolClick(event) {
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
-    svg.append("text")
-      .attr("transform", `translate(${roundLayout.width - roundLayout.marginRight - 500},${roundLayout.height - roundLayout.marginBottom + 15})`)
+    roundsSvg.append("text")
+    .attr("transform", `translate(${roundLayout.width - roundLayout.marginRight - 500},${roundLayout.height - roundLayout.marginBottom + 15})`)
     //   .text("Year")
-      .attr("text-anchor", "end")
-      .attr("font-size", 14)
-      .attr("fill", "dimgray")
+    .attr("text-anchor", "end")
+    .attr("font-size", 14)
+    .attr("fill", "dimgray")
     // create a button for each school
     // var listDiv = document.getElementById('list');
     // var counter = 0;
@@ -205,10 +203,7 @@ function handleSchoolClick(event) {
     //     }
     //     counter += 1;                                
     // }
-    var tooltip = d3.select("#round").append("div")	
-        .attr("class", "tooltip")				
-        .style("opacity", 0);
-    
+
     for (var i=0; i < selectedSchools.length; i++) {
         // console.log(selectedSchools[i]);
         // // console.log(streaks[selectedSchools[i]])
@@ -216,4 +211,4 @@ function handleSchoolClick(event) {
     }   
 };
 
-ready();
+// roundsReady();

@@ -1,4 +1,4 @@
-const layout = {
+const mainLayout = {
     width: 1000,
     height: 550,
     chartWidth: 632,
@@ -10,8 +10,25 @@ const layout = {
     bumper: 10
   };
 
-// adapted from https://stackoverflow.com/questions/44872048/d3-js-how-can-i-create-an-axis-with-custom-labels-and-customs-ticks
-var data = [{
+
+var years = {}
+var streaks = {}
+var selectedSchools = [];
+var selectedYear = ["2000"];
+
+const updateSelectedSchools = (schoolName) => {
+    const index = selectedSchools.indexOf(schoolName);
+    if (index == -1) {
+        selectedSchools.push(schoolName);
+        drawScores(schoolName);
+    } else {
+        selectedSchools.splice(index, 1);
+        removeScores(schoolName);
+    }
+    console.log("now selected schools is: " + selectedSchools);
+}
+
+var rounds = [{
     wins: 0,
     val: "Round of 64"
 }, {
@@ -35,27 +52,26 @@ var data = [{
 }];
 
 
-async function ready() {
-    var years = await d3.json("years_with_colors.json");
-    var selectedSchools = ["Georgetown"];
-    var selectedYear = ["2000"];
-    // create\ background paper for plot
+async function mainReady() {
+    years = await d3.json("years_with_colors.json");
+    streaks = await d3.json("team_streaks_with_colors.json");
+
+    // create background paper for plot
     let svg = d3.select("#main").append("svg");
     svg.attr("id", "my-main")
-        .attr("width", layout.width)
-        .attr("height", layout.height)
-        .attr("viewBox", [0, 0, layout.width, layout.height].join(" "));
+        .attr("width", mainLayout.width)
+        .attr("height", mainLayout.height)
+        .attr("viewBox", [0, 0, mainLayout.width, mainLayout.height].join(" "));
 
     
     function drawColumns(year) {
         var teams = years[year];
         // console.log(teams)
        
-        
         svg.selectAll("bar")
             .data(teams)
             .enter().append("rect")
-            .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+            .attr("transform", `translate(${mainLayout.marginLeft},${mainLayout.marginTop})`)
             .attr("class", "bar")
             .attr("fill", d => d["color"])
             .attr("opacity", 0.7)
@@ -63,7 +79,7 @@ async function ready() {
             .attr("y", d => yScale(d["wins"]))
             .attr("width", 8)
             .attr('rx', 0)
-            .attr("height", function(d) { return layout.chartHeight - yScale(d.wins); })
+            .attr("height", function(d) { return mainLayout.chartHeight - yScale(d.wins); })
             .on("mouseover", function(e, d) {
                 tooltip.transition()		
                     .duration(100)		
@@ -76,6 +92,10 @@ async function ready() {
                 tooltip.transition()		
                     .duration(50)		
                     .style("opacity", 0);	
+            })
+            .on("click", function(e, d) {
+                console.log("clicking on: " + d.name);
+                updateSelectedSchools(d.name);
             });
     }
     
@@ -87,12 +107,12 @@ async function ready() {
     let yData =  range(0, 6);
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.2, d3.max(yData)])
-        .range([layout.chartHeight, 0]);
+        .range([mainLayout.chartHeight, 0]);
     let yAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop})`)
+        .attr("transform", `translate(${mainLayout.marginLeft},${mainLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(6).tickFormat(function(d, i) {
-            return data[i].val;
+            return rounds[i].val;
           }));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
@@ -101,7 +121,7 @@ async function ready() {
     //     .attr('transform', 'translate( 16 ,0)');
     
     svg.append("text")
-        .attr("transform", `translate(${layout.marginLeft - 70},${layout.marginTop + layout.chartHeight/2}) rotate(270)`)
+        .attr("transform", `translate(${mainLayout.marginLeft - 70},${mainLayout.marginTop + mainLayout.chartHeight/2}) rotate(270)`)
         .text("Round Knocked Out")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
@@ -113,9 +133,9 @@ async function ready() {
     let xData =  range(1, 16);
     let xScale = d3.scaleLinear()
         .domain([d3.min(xData), d3.max(xData) + .99])
-        .range([0, layout.chartWidth]);
+        .range([0, mainLayout.chartWidth]);
     let xAxis = svg.append("g")
-        .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
+        .attr("transform", `translate(${mainLayout.marginLeft},${mainLayout.marginTop + mainLayout.chartHeight})`)
         .call(d3.axisBottom(xScale).ticks(16).tickFormat(d3.format("d")));
 
     xAxis.selectAll("text").attr("fill", "gray").attr("transform", `translate(${18},${0})`);
@@ -123,7 +143,7 @@ async function ready() {
     
     // x axis title
     svg.append("text")
-      .attr("transform", `translate(${layout.chartWidth/2 + layout.marginLeft},${layout.height - layout.marginBottom + 15})`)
+      .attr("transform", `translate(${mainLayout.chartWidth/2 + mainLayout.marginLeft},${mainLayout.height - mainLayout.marginBottom + 15})`)
       .text("Seed")
       .attr("text-anchor", "end")
       .attr("font-size", 14)
@@ -138,4 +158,10 @@ async function ready() {
     drawColumns(selectedYear);
 };
 
+async function ready() {
+    await mainReady();
+    await scoresReady();
+    await roundsReady();
+    await seedsReady();
+}
 ready();

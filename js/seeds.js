@@ -10,14 +10,14 @@ const seedLayout = {
     bumper: 10
   };
 
+var seedsTooltip = d3.select("#seed").append("div")	
+  .attr("class", "tooltip seed-tooltip")				
+  .style("opacity", 0);
+async function seedsReady() {
 
-async function ready() {
-    var streaks = await d3.json("team_streaks_with_colors.json");
-    var selectedSchools = ["Michigan", "Ohio State"];
-
-    // create\ background paper for plot
-    let svg = d3.select("#seed").append("svg");
-    svg.attr("id", "my-seed")
+    // create background paper for plot
+    let seedsSvg = d3.select("#seed").append("svg");
+    seedsSvg.attr("id", "my-seed")
         .attr("width", seedLayout.width)
         .attr("height", seedLayout.height)
         .attr("viewBox", [0, 0, seedLayout.width, seedLayout.height].join(" "));
@@ -31,7 +31,7 @@ async function ready() {
                 schoolRecords = schoolStreaks[i]
 
             // line connecting points
-            svg.append("path")
+            seedsSvg.append("path")
                 .datum(schoolRecords, d => d["id"])
                 .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`)
                 .attr("class", "connector")
@@ -45,7 +45,7 @@ async function ready() {
                 )
             
             // mark group seedLayout
-            let markGroupWins = svg.append("g")
+            let markGroupWins = seedsSvg.append("g")
                 .attr("id", "marks")
                 .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`);
             // mapping data to actual marks
@@ -59,27 +59,25 @@ async function ready() {
                 .on("mouseover", function(e, d) {
                     // console.log(d);
                     // console.log(e);
-                    tooltip.transition()		
+                    seedsTooltip.transition()		
                         .duration(100)		
                         .style("opacity", .9);
-                    tooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + d.seed + " seed")	
+                    seedsTooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + d.seed + " seed")	
                         .style("left", (e.x) + "px")		
                         .style("top", (e.y)+ "px");	
                     })					
                 .on("mouseout", function(d) {		
-                    tooltip.transition()		
+                    seedsTooltip.transition()		
                         .duration(50)		
                         .style("opacity", 0);	
                 });
             }
             
         }
-        
-
 
     function handleSchoolClick(event) {
-        svg.selectAll("rect").remove()
-        // svg.selectAll(".connector").remove()
+        seedsSvg.selectAll("rect").remove()
+        // seedsSvg.selectAll(".connector").remove()
         var btn = event.target;
         var schoolName = btn.innerHTML;
         if (btn.style.backgroundColor !== "white") {
@@ -111,14 +109,14 @@ async function ready() {
     let yScale = d3.scaleLinear()
         .domain([d3.min(yData) - 0.9, d3.max(yData)])
         .range([seedLayout.chartHeight, 0]);
-    let yAxis = svg.append("g")
+    let yAxis = seedsSvg.append("g")
         .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop})`)
         .call(d3.axisLeft(yScale))
         .call(d3.axisLeft(yScale).ticks(8));
     yAxis.selectAll("text").attr("fill", "gray");
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
-    svg.append("text")
+    seedsSvg.append("text")
         .attr("transform", `translate(${seedLayout.marginLeft - 25},${seedLayout.marginTop - 15})`)
         .text("Seed")
         .attr("font-size", 11)
@@ -136,7 +134,7 @@ async function ready() {
     let xScale = d3.scaleLinear()
         .domain([d3.min(xData) - 0.5, d3.max(xData) + 0.5])
         .range([0, seedLayout.chartWidth]);
-    let xAxis = svg.append("g")
+    let xAxis = seedsSvg.append("g")
         .attr("transform", `translate(${seedLayout.marginLeft},${seedLayout.marginTop + seedLayout.chartHeight})`)
         .call(d3.axisBottom(xScale))
         .call(d3.axisBottom(xScale).ticks(10).tickFormat(d3.format("d")));
@@ -145,7 +143,7 @@ async function ready() {
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
-    svg.append("text")
+    seedsSvg.append("text")
       .attr("transform", `translate(${seedLayout.width - seedLayout.marginRight - 430},${seedLayout.height - seedLayout.marginBottom + 15})`)
     //   .text("Year")
       .attr("text-anchor", "end")
@@ -167,9 +165,6 @@ async function ready() {
     //     counter += 1;                                
     // }
 
-    var tooltip = d3.select("#round").append("div")	
-        .attr("class", "tooltip seed-tooltip")				
-        .style("opacity", 0);
       
     for (var i=0; i < selectedSchools.length; i++) {
         drawMarks(selectedSchools[i]);
@@ -177,4 +172,4 @@ async function ready() {
     }
 };
 
-ready();
+// seedsReady();
