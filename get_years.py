@@ -20,6 +20,9 @@ with open(filename, 'r') as csvfile:
 	for row in csvreader:
 		rows.append(row)
 
+with open('colors.json', 'r') as infile:
+    colors = json.load(infile)
+
 DATE = 0
 WINNING_SEED = 3
 WINNER = 4
@@ -57,14 +60,14 @@ for row in rows:
     winning_seed = int(row[WINNING_SEED])
     num_seedmates = len(years[year][winning_seed - 1].keys())
     if row[WINNER] not in years[year][winning_seed - 1]:
-        years[year][winning_seed - 1][row[WINNER]] = {"seed": winning_seed, "offset": num_seedmates, "name" : row[WINNER], "wins" : 1, "score": 0, "color": "steelblue"}
+        years[year][winning_seed - 1][row[WINNER]] = {"seed": winning_seed, "offset": num_seedmates, "name" : row[WINNER], "wins" : 1, "score": 0, "color": colors[row[WINNER]]}
     else:
         years[year][winning_seed - 1][row[WINNER]]["wins"] += 1
     # add loser
     losing_seed = int(row[LOSING_SEED])
     num_seedmates = len(years[year][losing_seed - 1].keys())
     if row[LOSER] not in years[year][losing_seed - 1]:
-        years[year][losing_seed - 1][row[LOSER]] = {"seed": losing_seed, "offset": num_seedmates, "name" : row[LOSER], "wins" : 0, "score": 0, "color": "steelblue"}
+        years[year][losing_seed - 1][row[LOSER]] = {"seed": losing_seed, "offset": num_seedmates, "name" : row[LOSER], "wins" : 0, "score": 0, "color": colors[row[LOSER]]}
 
 years_with_scores = {}
 
@@ -81,7 +84,7 @@ for year in years: # year = string key
 
 
     
-with open("years_with_scores.json", "w") as outfile:
+with open("years_with_colors.json", "w") as outfile:
     outfile.write(json.dumps(years_with_scores, indent = 1))
 
 # TEST DATA LOAD

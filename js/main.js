@@ -1,7 +1,7 @@
 const layout = {
     width: 1000,
     height: 550,
-    chartWidth: 600,
+    chartWidth: 632,
     chartHeight: 460,
     marginTop: 40,
     marginBottom: 20,
@@ -36,7 +36,7 @@ var data = [{
 
 
 async function ready() {
-    var years = await d3.json("years_with_scores.json");
+    var years = await d3.json("years_with_colors.json");
     var selectedSchools = ["Georgetown"];
     var selectedYear = ["2000"];
     // create\ background paper for plot
@@ -112,14 +112,13 @@ async function ready() {
     }
     let xData =  range(1, 16);
     let xScale = d3.scaleLinear()
-        .domain([d3.min(xData), d3.max(xData)])
+        .domain([d3.min(xData), d3.max(xData) + .99])
         .range([0, layout.chartWidth]);
     let xAxis = svg.append("g")
         .attr("transform", `translate(${layout.marginLeft},${layout.marginTop + layout.chartHeight})`)
-        .call(d3.axisBottom(xScale))
         .call(d3.axisBottom(xScale).ticks(16).tickFormat(d3.format("d")));
 
-    xAxis.selectAll("text").attr("fill", "gray");
+    xAxis.selectAll("text").attr("fill", "gray").attr("transform", `translate(${18},${0})`);
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title

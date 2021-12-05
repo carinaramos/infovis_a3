@@ -1,19 +1,19 @@
 const seedLayout = {
     width: 1000,
     height: 160,
-    chartWidth: 450,
+    chartWidth: 425,
     chartHeight: 110,
     marginTop: 30,
     marginBottom: 40,
-    marginLeft: 80,
+    marginLeft: 105,
     marginRight: 10,
     bumper: 10
   };
 
 
 async function ready() {
-    var streaks = await d3.json("streaks_by_team_with_scores.json");
-    var selectedSchools = ["Michigan"];
+    var streaks = await d3.json("team_streaks_with_colors.json");
+    var selectedSchools = ["Michigan", "Ohio State"];
 
     // create\ background paper for plot
     let svg = d3.select("#seed").append("svg");
@@ -37,6 +37,7 @@ async function ready() {
                 .attr("class", "connector")
                 .attr("fill", "none")
                 .attr("stroke", schoolColor)
+                .attr("stroke-opacity", 0.7)
                 .attr("stroke-width", 1.5)
                 .attr("d", d3.line()
                 .x(d => xScale(d["year"]))
@@ -52,7 +53,7 @@ async function ready() {
             winMarks.join(enter => enter.append("circle"))
                 .attr("cx", d => xScale(d["year"]))
                 .attr("cy", d => yScale(d["seed"]))
-                .attr("r", 4)
+                .attr("r", 3)
                 .attr("fill", d => d["color"])
                 .attr("opacity", 0.7)
                 .on("mouseover", function(e, d) {
@@ -61,7 +62,7 @@ async function ready() {
                     tooltip.transition()		
                         .duration(100)		
                         .style("opacity", .9);
-                    tooltip.html(d.year + "<br/>"  + d.seed + " seed")	
+                    tooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + d.seed + " seed")	
                         .style("left", (e.x) + "px")		
                         .style("top", (e.y)+ "px");	
                     })					
@@ -118,9 +119,9 @@ async function ready() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     var counter = 0;
     svg.append("text")
-        .attr("transform", `translate(${seedLayout.marginLeft - 70},${seedLayout.marginTop - 20})`)
+        .attr("transform", `translate(${seedLayout.marginLeft - 25},${seedLayout.marginTop - 15})`)
         .text("Seed")
-        .attr("font-size", 14)
+        .attr("font-size", 11)
         .attr("fill", "dimgray");
     
     
@@ -167,7 +168,7 @@ async function ready() {
     // }
 
     var tooltip = d3.select("#round").append("div")	
-        .attr("class", "tooltip")				
+        .attr("class", "tooltip seed-tooltip")				
         .style("opacity", 0);
       
     for (var i=0; i < selectedSchools.length; i++) {

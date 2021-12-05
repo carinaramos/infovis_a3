@@ -29,8 +29,8 @@ WINNER = 4
 LOSING_SEED = 6
 LOSER = 7
 
-# printing the field names
-# print('Field names are:' + ', '.join(field for field in fields))
+with open('colors.json', 'r') as infile:
+    colors = json.load(infile)
 
 records = {}
 for row in rows:
@@ -44,7 +44,7 @@ for row in rows:
 		if team not in records: 
 			records[team] = {}
 		if (year) not in records[team]:
-			color = "#FFCB05" if team == "Michigan" else "steelblue"
+			color = colors[team]
 			records[team][year] = {"id": (team + " " + year), "name": team, "year" : int(year), "seed" : int(row[seed_index]), "wins" : 0, "color": color}
 		# set the seed for that year
 		if team == winner:
@@ -98,5 +98,5 @@ for team_name in records:
 				current_streak = []
 	records[team_name] = streaks
 			
-with open("streaks_by_team_with_scores.json", "w") as outfile:
+with open("team_streaks_with_colors.json", "w") as outfile:
     outfile.write(json.dumps(records, indent = 1, sort_keys=True))

@@ -50,10 +50,15 @@ h2 {
 div.tooltip {	
   position: absolute;			
   text-align: center;
+  width: 150px;
   padding: 2px;				
   font: 12px sans-serif;		
   background: lightgrey;	
   border: 0px;		
   border-radius: 8px;			
   pointer-events: none;			
+}
+
+div.seed-tooltip {
+  width: 100px;
 }
