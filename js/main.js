@@ -42,8 +42,7 @@ const updateSelectedSchools = (schoolName) => {
 }
 
 const handleTeamButtonClick = (btn) => {
-    console.log("btn.value: " + btn.value);
-    var teamName = btn.innerHTML
+    var teamName = btn.value
     if (teamName.includes('amp;')) {
         teamName = teamName.replace('amp;', '')
     }
@@ -55,12 +54,14 @@ const handleTeamButtonClick = (btn) => {
 const createButton = (teamName) => {
     var teamButtons = document.getElementById('team-buttons');
     var btn = document.createElement('button');
+
     btn.classList = 'btn btn-outline-secondary btn-sm';
     btn.value = teamName;
     btn.id = strFormat(teamName) + "-button";
-    // button.style.backgroundColor = ...
+    btn.style.borderColor = colors[teamName];
+    btn.style.color = colors[teamName];
     btn.onclick = function() {handleTeamButtonClick(this)};
-    btn.innerHTML = teamName;
+    btn.innerHTML = teamName + ' ✕';
     teamButtons.appendChild(btn);                             
 }
 
@@ -111,6 +112,7 @@ var mainTooltip = d3.select("#main").append("div")
 
 async function mainReady() {
     years = await d3.json("years_with_colors.json");
+    colors = await d3.json("colors.json");
     streaks = await d3.json("team_streaks_with_colors.json");
 
     // create background paper for plot

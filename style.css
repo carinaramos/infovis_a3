@@ -1,7 +1,7 @@
 #container {
     box-sizing: border-box;
     width: 1350;
-    height: 700;
+    height: 800;
     margin: 10px auto;
     padding: 20px;
     border-radius: 17px;
@@ -105,4 +105,8 @@ div.seed-tooltip {
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 6px;
+}
+
+.btn:hover {
+  background-color: 'pink';
 }
