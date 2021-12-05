@@ -1,7 +1,7 @@
 #container {
     box-sizing: border-box;
     width: 1350;
-    height: 640;
+    height: 700;
     margin: 10px auto;
     padding: 20px;
     border-radius: 17px;
@@ -38,12 +38,35 @@ h2 {
   width: 55%;
 }
 
+#main-header{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#select-year-header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#upsets-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
 #sidebar {
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 45%;
-  /* height: 100% */
 }
 
 
@@ -61,4 +84,8 @@ div.tooltip {
 
 div.seed-tooltip {
   width: 100px;
+}
+
+#year-selector {
+  width: 90px;
 }

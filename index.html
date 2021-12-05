@@ -3,17 +3,33 @@
 <meta charset="utf-8">
 <body>
     <!--Rather than loading v3 or v4, loading individual modules to ensure compatibility with v4 functions (loads newest version of each)-->
-    <!-- D3.js CDN -->
+    <!-- D3.js CDN --> 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
     <div id="container">
         <h2>NCAA March Madness Tournament Data</h2>
         <div id="content">
-            <div id="main"></div>
+            <div id="main">
+                <div id="main-header">
+                    <div id="select-year-header">
+                        <h5>Select tournament:</h5>
+                        <select id="year-selector" class="form-select" aria-label=".form-select-lg example"></select>
+                    </div>
+                    <div id="upsets-header">
+                        <h5>Highlight Upsets:</h5>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
             <div id="sidebar">
+                <div id="selected-teams"></div>
                 <div id="score"></div>
                 <div id="round"></div>
                 <div id="seed"></div>  
@@ -24,7 +40,7 @@
     <script src="js/rounds.js"></script>
     <script src="js/seeds.js"></script>
     <script src="js/main.js"></script>
-    
+    <script src="js/year-selector.js"></script>
     
     
     

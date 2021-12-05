@@ -102,22 +102,6 @@ async function seedsReady() {
       .attr("text-anchor", "end")
       .attr("font-size", 14)
       .attr("fill", "dimgray")
-    // // create a button for each school
-    // var listDiv = document.getElementById('list');
-    // var counter = 0;
-    // for (var i=0; i < records.length; i++) {
-    //     var button = document.createElement('button');
-    //     button.classList = 'btn btn-outline-secondary';
-    //     button.id = records[i]["name"];
-    //     // button.style.backgroundColor = ...
-    //     button.innerHTML = records[i]["name"];
-    //     button.onclick = handleSchoolClick;
-    //     if (counter < 8) {
-    //         listDiv.appendChild(button); 
-    //     }
-    //     counter += 1;                                
-    // }
-
       
     for (var i=0; i < selectedSchools.length; i++) {
         drawSeeds(selectedSchools[i]);
