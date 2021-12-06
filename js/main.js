@@ -192,11 +192,8 @@ function drawColumns(year) {
         .attr('rx', 0)
         .attr("height", function(d) { return mainLayout.chartHeight - yScaleMain(d.wins); })
         .on("mouseover", function(e, d) {
-            d3.select(this)
-                .attr("opacity", d => selectedSchools.includes(d.name) ? 0.5 : 1.0);
-            // if (d.wins < 6) {
-            //     document.getElementById(strFormat(d.lostTo) + "-bar").style.opacity = 1.0;
-            // }
+            d3.select("#" + strFormat(d.name) + "-bar").style("opacity", selectedSchools.includes(d.name) ? 0.5 : 1.0);
+            d3.select("#" + strFormat(d.lostTo) + "-bar").style("opacity", 1.0);
             mainTooltip.transition()		
                 .duration(100)		
                 .style("opacity", .9);
@@ -205,11 +202,8 @@ function drawColumns(year) {
                 .style("top", (e.y)+ "px");	
             })					
         .on("mouseout", function(e, d) {
-            d3.select(this)
-                .attr("opacity", d => selectedSchools.includes(d.name) ? 1.0 : 0.5);
-            // if (d.wins < 6) {
-            //     document.getElementById(strFormat(d.lostTo) + "-bar").style.opacity = selectedSchools.includes(d.lostTo) ? 1.0 : 0.5;
-            // }
+            d3.select("#" + strFormat(d.name) + "-bar").style("opacity", (selectedSchools.includes(d.name) ? 1.0 : 0.5));
+            d3.select("#" + strFormat(d.lostTo) + "-bar").style("opacity", (selectedSchools.includes(d.lostTo) ? 1.0 : 0.5));
             mainTooltip.transition()		
                 .duration(50)		
                 .style("opacity", 0);	
