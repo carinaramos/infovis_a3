@@ -125,7 +125,7 @@ function drawScores(schoolName) {
                 scoresTooltip.transition()		
                     .duration(100)		
                     .style("opacity", .9);
-                scoresTooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + "Predicted to win " + d.predictedWins + " game" + (d.predictedWins == 1 ? " " : "s ") + (d.predictedWins == d.wins ? "and " : "but ")  + " won " + d.wins)	
+                scoresTooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + "Predicted to win " + (d.predictedWins == 4.75 ? "4 to 6" : d.predictedWins) + " game" + (d.predictedWins == 1 ? " " : "s ") + (d.predictedWins == d.wins ? "and " : "but ")  + " won " + d.wins)	
                 // scoresTooltip.html(d.predictedWins)	
                     .style("left", (e.x) + "px")		
                     .style("top", (e.y)+ "px");	

@@ -32,8 +32,8 @@ LOSER = 7
 
 # seed -> expected wins
 expected_wins = {
-    1: 5.5,
-    2: 4,
+    1: 4.75,
+    2: 3,
     3: 2,
     4: 2,
     5: 1,
@@ -91,7 +91,7 @@ for year in years: # year = string key
     years_with_scores[year] = year_list
 
     
-with open("years_with_colors_sorted_lost_to.json", "w") as outfile:
+with open("years_fix_expected.json", "w") as outfile:
     outfile.write(json.dumps(years_with_scores, indent = 1))
 
 # TEST DATA LOAD

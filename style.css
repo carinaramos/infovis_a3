@@ -1,48 +1,45 @@
 #container {
     box-sizing: border-box;
-    width: 1500;
-    height: 800;
-    margin: 10px auto;
+    width: 1640;
+    /* height: 800; */
+    margin: 20px auto;
     padding: 20px;
     border-radius: 17px;
     box-shadow: 0 0 13px 0 rgba(0,0,0,0.3);
 }
 
-#list {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
+.sub-container {
+    box-sizing: border-box;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 17px;
+    box-shadow: 0 0 13px 0 rgba(0,0,0,0.3);
+    width: 95%;
 }
 
-h2 {
+#title {
   text-align: center;
+  width: 100%
 }
-/* 
-#Georgetown {
-  background-color: steelblue;
-  color: white;
-} */
-/* #Michigan {
-  background-color: #FFCB05;
-  color: white;
-} */
 
 #content {
   display: flex;
   flex-direction: row;
+  gap: 15px;
 }
 
-#main {
+#main-content {
   display: flex;
   flex-direction: column;
   width: 55%;
+  justify-content: center;
 }
 
-#main-header{
+#main-controls{
   display: flex;
   flex-direction: row;
   gap: 50px;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
 }
 
@@ -54,7 +51,7 @@ h2 {
   align-items: flex-end;
 }
 
-#upsets-header {
+#toggle-header {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -66,10 +63,13 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 45%;
+  width: 43%;
+  /* justify-content: center; */
+  /* align-items: center; */
+
 }
 
-#controls {
+#sidebar-controls {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

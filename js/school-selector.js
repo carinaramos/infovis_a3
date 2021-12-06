@@ -1,4 +1,4 @@
-// create clear button
+// add clear button functionality
 var clearButton = document.getElementById('clear-button');
 const handleClear = () => {
     console.log("clearing all teams");

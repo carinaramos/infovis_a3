@@ -123,9 +123,9 @@ var mainTooltip = d3.select("#main").append("div")
     .style("opacity", 0);
 
 async function mainReady() {
-    years = await d3.json("years.json");
+    years = await d3.json("years_fix_expected.json");
     colors = await d3.json("colors.json");
-    streaks = await d3.json("teams.json");
+    streaks = await d3.json("teams_fix_expected.json");
 
     // create background paper for plot
     
@@ -176,9 +176,8 @@ function removeColumns() {
 
 function drawColumns(year) {
     var teams = years[year];
-    console.log("drawing columns withselected schools: " + selectedSchools)
    
-    mainSvg.selectAll("bar")
+    mainSvg.selectAll(".bar")
         .data(teams)
         .enter().append("rect")
         .attr("id", d => strFormat(d.name) + "-bar")

@@ -52,8 +52,8 @@ for row in rows:
 
 # seed -> expected wins
 expected_wins = {
-    1: 5.5,
-    2: 4,
+    1: 4.75,
+    2: 3,
     3: 2,
     4: 2,
     5: 1,
@@ -98,5 +98,5 @@ for team_name in records:
 				current_streak = []
 	records[team_name] = streaks
 			
-with open("team_streaks_with_colors_no_opening_rounds.json", "w") as outfile:
+with open("teams_fix_expected.json", "w") as outfile:
     outfile.write(json.dumps(records, indent = 1, sort_keys=True))
