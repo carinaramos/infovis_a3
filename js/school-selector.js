@@ -12,7 +12,7 @@ clearButton.onclick = function() {handleClear()};
 
 // create team selector
 async function initTeamSelect() {
-    streaks = await d3.json("team_streaks_with_colors.json");
+    streaks = await d3.json("teams.json");
     var teamSelect = document.getElementById('team-selector');
     const handleTeamClick = (selectElement) => {
         console.log("selected team: " + selectElement.value);

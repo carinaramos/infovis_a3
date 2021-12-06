@@ -9790,30 +9790,12 @@
   },
   {
    "seed": 16,
-   "name": "Northwestern State",
-   "wins": 1,
-   "score": 1,
-   "color": "#663399",
-   "lostTo": "Illinois",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Winthrop",
-   "wins": 0,
-   "score": 0,
-   "color": "#660000",
-   "lostTo": "Northwestern State",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Monmouth, New Jersey",
    "wins": 0,
    "score": 0,
    "color": "#041E42",
    "lostTo": "Duke",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -9822,7 +9804,16 @@
    "score": 0,
    "color": "#0F2044",
    "lostTo": "Stanford",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Northwestern State",
+   "wins": 0,
+   "score": 0,
+   "color": "#663399",
+   "lostTo": "Illinois",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -9831,7 +9822,7 @@
    "score": 0,
    "color": "#C99700",
    "lostTo": "Michigan State",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2002": [
@@ -10377,30 +10368,12 @@
   },
   {
    "seed": 16,
-   "name": "Siena",
-   "wins": 1,
-   "score": 1,
-   "color": "#FFC72C",
-   "lostTo": "Maryland",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Alcorn State",
-   "wins": 0,
-   "score": 0,
-   "color": "#CE8E00",
-   "lostTo": "Siena",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Holy Cross",
    "wins": 0,
    "score": 0,
    "color": "#602D89",
    "lostTo": "Kansas",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -10409,7 +10382,16 @@
    "score": 0,
    "color": "#660000",
    "lostTo": "Duke",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Siena",
+   "wins": 0,
+   "score": 0,
+   "color": "#FFC72C",
+   "lostTo": "Maryland",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -10418,7 +10400,7 @@
    "score": 0,
    "color": "#CC0000",
    "lostTo": "Cincinnati",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2003": [
@@ -10964,30 +10946,12 @@
   },
   {
    "seed": 16,
-   "name": "North Carolina-Asheville",
-   "wins": 1,
-   "score": 1,
-   "color": "#003DA5",
-   "lostTo": "Texas",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Texas Southern",
-   "wins": 0,
-   "score": 0,
-   "color": "#7C183E",
-   "lostTo": "North Carolina-Asheville",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "South Carolina State",
    "wins": 0,
    "score": 0,
    "color": "#862633",
    "lostTo": "Oklahoma",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -10996,7 +10960,7 @@
    "score": 0,
    "color": "#007155",
    "lostTo": "Arizona",
-   "offset": 3
+   "offset": 1
   },
   {
    "seed": 16,
@@ -11005,7 +10969,16 @@
    "score": 0,
    "color": "#9D2235",
    "lostTo": "Kentucky",
-   "offset": 4
+   "offset": 2
+  },
+  {
+   "seed": 16,
+   "name": "North Carolina-Asheville",
+   "wins": 0,
+   "score": 0,
+   "color": "#003DA5",
+   "lostTo": "Texas",
+   "offset": 3
   }
  ],
  "2004": [
@@ -11551,30 +11524,12 @@
   },
   {
    "seed": 16,
-   "name": "Florida A&M",
-   "wins": 1,
-   "score": 1,
-   "color": "#EE7624",
-   "lostTo": "Kentucky",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Lehigh",
-   "wins": 0,
-   "score": 0,
-   "color": "#653600",
-   "lostTo": "Florida A&M",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Liberty",
    "wins": 0,
    "score": 0,
    "color": "#002D62",
    "lostTo": "St. Joseph's, Pennsylvania",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -11583,7 +11538,7 @@
    "score": 0,
    "color": "#C99700",
    "lostTo": "Duke",
-   "offset": 3
+   "offset": 1
   },
   {
    "seed": 16,
@@ -11592,7 +11547,16 @@
    "score": 0,
    "color": "#002244",
    "lostTo": "Stanford",
-   "offset": 4
+   "offset": 2
+  },
+  {
+   "seed": 16,
+   "name": "Florida A&M",
+   "wins": 0,
+   "score": 0,
+   "color": "#EE7624",
+   "lostTo": "Kentucky",
+   "offset": 3
   }
  ],
  "2005": [
@@ -12138,30 +12102,12 @@
   },
   {
    "seed": 16,
-   "name": "Oakland",
-   "wins": 1,
-   "score": 1,
-   "color": "#B59A57",
-   "lostTo": "North Carolina",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Alabama A&M",
-   "wins": 0,
-   "score": 0,
-   "color": "#660000",
-   "lostTo": "Oakland",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Fairleigh Dickinson",
    "wins": 0,
    "score": 0,
    "color": "#28334A",
    "lostTo": "Illinois",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -12170,7 +12116,16 @@
    "score": 0,
    "color": "#660033",
    "lostTo": "Washington",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Oakland",
+   "wins": 0,
+   "score": 0,
+   "color": "#B59A57",
+   "lostTo": "North Carolina",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -12179,7 +12134,7 @@
    "score": 0,
    "color": "#EE3124",
    "lostTo": "Duke",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2006": [
@@ -12725,30 +12680,12 @@
   },
   {
    "seed": 16,
-   "name": "Monmouth, New Jersey",
-   "wins": 1,
-   "score": 1,
-   "color": "#041E42",
-   "lostTo": "Villanova",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Hampton",
-   "wins": 0,
-   "score": 0,
-   "color": "#0060A9",
-   "lostTo": "Monmouth, New Jersey",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Southern",
    "wins": 0,
    "score": 0,
    "color": "#58B6E7",
    "lostTo": "Duke",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -12757,7 +12694,16 @@
    "score": 0,
    "color": "#461660",
    "lostTo": "Connecticut",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Monmouth, New Jersey",
+   "wins": 0,
+   "score": 0,
+   "color": "#041E42",
+   "lostTo": "Villanova",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -12766,7 +12712,7 @@
    "score": 0,
    "color": "#C5B783",
    "lostTo": "Memphis",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2007": [
@@ -13312,30 +13258,12 @@
   },
   {
    "seed": 16,
-   "name": "Niagara",
-   "wins": 1,
-   "score": 1,
-   "color": "#582C83",
-   "lostTo": "Kansas",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Florida A&M",
-   "wins": 0,
-   "score": 0,
-   "color": "#EE7624",
-   "lostTo": "Niagara",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Eastern Kentucky",
    "wins": 0,
    "score": 0,
    "color": "#8A0039",
    "lostTo": "North Carolina",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -13344,7 +13272,7 @@
    "score": 0,
    "color": "#00539B",
    "lostTo": "Ohio State",
-   "offset": 3
+   "offset": 1
   },
   {
    "seed": 16,
@@ -13353,7 +13281,16 @@
    "score": 0,
    "color": "#002147",
    "lostTo": "Florida",
-   "offset": 4
+   "offset": 2
+  },
+  {
+   "seed": 16,
+   "name": "Niagara",
+   "wins": 0,
+   "score": 0,
+   "color": "#582C83",
+   "lostTo": "Kansas",
+   "offset": 3
   }
  ],
  "2008": [
@@ -13899,30 +13836,12 @@
   },
   {
    "seed": 16,
-   "name": "Mt. St. Mary's, Maryland",
-   "wins": 1,
-   "score": 1,
-   "color": "#002855",
-   "lostTo": "North Carolina",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Coppin State",
-   "wins": 0,
-   "score": 0,
-   "color": "#003056",
-   "lostTo": "Mt. St. Mary's, Maryland",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Portland State",
    "wins": 0,
    "score": 0,
    "color": "#154734",
    "lostTo": "Kansas",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -13931,7 +13850,16 @@
    "score": 0,
    "color": "#00703C",
    "lostTo": "UCLA",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Mt. St. Mary's, Maryland",
+   "wins": 0,
+   "score": 0,
+   "color": "#002855",
+   "lostTo": "North Carolina",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -13940,7 +13868,7 @@
    "score": 0,
    "color": "#F58025",
    "lostTo": "Memphis",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2009": [
@@ -14486,30 +14414,12 @@
   },
   {
    "seed": 16,
-   "name": "Morehead State",
-   "wins": 1,
-   "score": 1,
-   "color": "#FFCF00",
-   "lostTo": "Louisville",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Alabama State",
-   "wins": 0,
-   "score": 0,
-   "color": "#C99700",
-   "lostTo": "Morehead State",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "Radford",
    "wins": 0,
    "score": 0,
    "color": "#C2011B",
    "lostTo": "North Carolina",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -14518,7 +14428,7 @@
    "score": 0,
    "color": "#00386B",
    "lostTo": "Connecticut",
-   "offset": 3
+   "offset": 1
   },
   {
    "seed": 16,
@@ -14527,7 +14437,16 @@
    "score": 0,
    "color": "#041E42",
    "lostTo": "Pittsburgh",
-   "offset": 4
+   "offset": 2
+  },
+  {
+   "seed": 16,
+   "name": "Morehead State",
+   "wins": 0,
+   "score": 0,
+   "color": "#FFCF00",
+   "lostTo": "Louisville",
+   "offset": 3
   }
  ],
  "2010": [
@@ -15073,30 +14992,12 @@
   },
   {
    "seed": 16,
-   "name": "Arkansas-Pine Bluff",
-   "wins": 1,
-   "score": 1,
-   "color": "#EEB310",
-   "lostTo": "Duke",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Winthrop",
-   "wins": 0,
-   "score": 0,
-   "color": "#660000",
-   "lostTo": "Arkansas-Pine Bluff",
-   "offset": 1
-  },
-  {
-   "seed": 16,
    "name": "East Tennessee State",
    "wins": 0,
    "score": 0,
    "color": "#041E42",
    "lostTo": "Kentucky",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 16,
@@ -15105,7 +15006,16 @@
    "score": 0,
    "color": "#653600",
    "lostTo": "Kansas",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Arkansas-Pine Bluff",
+   "wins": 0,
+   "score": 0,
+   "color": "#EEB310",
+   "lostTo": "Duke",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -15114,7 +15024,7 @@
    "score": 0,
    "color": "#007155",
    "lostTo": "Syracuse",
-   "offset": 4
+   "offset": 3
   }
  ],
  "2011": [
@@ -15481,8 +15391,8 @@
   {
    "seed": 11,
    "name": "Virginia Commonwealth",
-   "wins": 5,
-   "score": 5,
+   "wins": 4,
+   "score": 4,
    "color": "#FFB300",
    "lostTo": "Butler",
    "offset": 0
@@ -15507,21 +15417,12 @@
   },
   {
    "seed": 11,
-   "name": "Southern California",
-   "wins": 0,
-   "score": 0,
-   "color": "#990000",
-   "lostTo": "Virginia Commonwealth",
-   "offset": 3
-  },
-  {
-   "seed": 11,
    "name": "Missouri",
    "wins": 0,
    "score": 0,
    "color": "#F1B82D",
    "lostTo": "Cincinnati",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 12,
@@ -15535,20 +15436,11 @@
   {
    "seed": 12,
    "name": "Clemson",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#F56600",
    "lostTo": "West Virginia",
    "offset": 1
-  },
-  {
-   "seed": 12,
-   "name": "UAB",
-   "wins": 0,
-   "score": 0,
-   "color": "#006341",
-   "lostTo": "Clemson",
-   "offset": 2
   },
   {
    "seed": 12,
@@ -15557,7 +15449,7 @@
    "score": 0,
    "color": "#00263A",
    "lostTo": "Kansas State",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 12,
@@ -15566,7 +15458,7 @@
    "score": 0,
    "color": "#003087",
    "lostTo": "Arizona",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 13,
@@ -15679,8 +15571,8 @@
   {
    "seed": 16,
    "name": "North Carolina-Asheville",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#003DA5",
    "lostTo": "Pittsburgh",
    "offset": 0
@@ -15688,29 +15580,11 @@
   {
    "seed": 16,
    "name": "Texas-San Antonio",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#002244",
    "lostTo": "Ohio State",
    "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Arkansas-Little Rock",
-   "wins": 0,
-   "score": 0,
-   "color": "#6E2639",
-   "lostTo": "North Carolina-Asheville",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "Alabama State",
-   "wins": 0,
-   "score": 0,
-   "color": "#C99700",
-   "lostTo": "Texas-San Antonio",
-   "offset": 3
   },
   {
    "seed": 16,
@@ -15719,7 +15593,7 @@
    "score": 0,
    "color": "#CC0000",
    "lostTo": "Kansas",
-   "offset": 4
+   "offset": 2
   },
   {
    "seed": 16,
@@ -15728,7 +15602,7 @@
    "score": 0,
    "color": "#0060A9",
    "lostTo": "Duke",
-   "offset": 5
+   "offset": 3
   }
  ],
  "2012": [
@@ -16130,30 +16004,21 @@
   },
   {
    "seed": 12,
-   "name": "South Florida",
-   "wins": 2,
-   "score": 2,
-   "color": "#006747",
-   "lostTo": "Ohio",
-   "offset": 0
-  },
-  {
-   "seed": 12,
    "name": "Virginia Commonwealth",
    "wins": 1,
    "score": 1,
    "color": "#FFB300",
    "lostTo": "Indiana",
-   "offset": 1
+   "offset": 0
   },
   {
    "seed": 12,
-   "name": "California",
-   "wins": 0,
-   "score": 0,
-   "color": "#003262",
-   "lostTo": "South Florida",
-   "offset": 2
+   "name": "South Florida",
+   "wins": 1,
+   "score": 1,
+   "color": "#006747",
+   "lostTo": "Ohio",
+   "offset": 1
   },
   {
    "seed": 12,
@@ -16162,7 +16027,7 @@
    "score": 0,
    "color": "#A41034",
    "lostTo": "Vanderbilt",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 12,
@@ -16171,7 +16036,7 @@
    "score": 0,
    "color": "#FFC72A",
    "lostTo": "New Mexico",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 13,
@@ -16211,30 +16076,21 @@
   },
   {
    "seed": 14,
-   "name": "Brigham Young",
-   "wins": 1,
-   "score": 1,
-   "color": "#002E5D",
-   "lostTo": "Marquette",
-   "offset": 0
-  },
-  {
-   "seed": 14,
-   "name": "Iona",
-   "wins": 0,
-   "score": 0,
-   "color": "#6F2C3F",
-   "lostTo": "Brigham Young",
-   "offset": 1
-  },
-  {
-   "seed": 14,
    "name": "South Dakota State",
    "wins": 0,
    "score": 0,
    "color": "#0033A0",
    "lostTo": "Baylor",
-   "offset": 2
+   "offset": 0
+  },
+  {
+   "seed": 14,
+   "name": "Brigham Young",
+   "wins": 0,
+   "score": 0,
+   "color": "#002E5D",
+   "lostTo": "Marquette",
+   "offset": 1
   },
   {
    "seed": 14,
@@ -16243,7 +16099,7 @@
    "score": 0,
    "color": "#54261A",
    "lostTo": "Florida State",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 14,
@@ -16252,7 +16108,7 @@
    "score": 0,
    "color": "#C8102E",
    "lostTo": "Georgetown",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 15,
@@ -16292,48 +16148,30 @@
   },
   {
    "seed": 16,
-   "name": "Western Kentucky",
-   "wins": 1,
-   "score": 1,
-   "color": "#C60C30",
-   "lostTo": "Kentucky",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Vermont",
-   "wins": 1,
-   "score": 1,
-   "color": "#007155",
-   "lostTo": "North Carolina",
-   "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Mississippi Valley",
-   "wins": 0,
-   "score": 0,
-   "color": "#00703C",
-   "lostTo": "Western Kentucky",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "Lamar",
-   "wins": 0,
-   "score": 0,
-   "color": "#DC0032",
-   "lostTo": "Vermont",
-   "offset": 3
-  },
-  {
-   "seed": 16,
    "name": "North Carolina-Asheville",
    "wins": 0,
    "score": 0,
    "color": "#003DA5",
    "lostTo": "Syracuse",
-   "offset": 4
+   "offset": 0
+  },
+  {
+   "seed": 16,
+   "name": "Western Kentucky",
+   "wins": 0,
+   "score": 0,
+   "color": "#C60C30",
+   "lostTo": "Kentucky",
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Vermont",
+   "wins": 0,
+   "score": 0,
+   "color": "#007155",
+   "lostTo": "North Carolina",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -16342,7 +16180,7 @@
    "score": 0,
    "color": "#231F20",
    "lostTo": "Michigan State",
-   "offset": 5
+   "offset": 3
   }
  ],
  "2013": [
@@ -16708,30 +16546,12 @@
   },
   {
    "seed": 11,
-   "name": "St. Mary's, California",
-   "wins": 1,
-   "score": 1,
-   "color": "#06315B",
-   "lostTo": "Memphis",
-   "offset": 0
-  },
-  {
-   "seed": 11,
    "name": "Minnesota",
    "wins": 1,
    "score": 1,
    "color": "#7A0019",
    "lostTo": "Florida",
-   "offset": 1
-  },
-  {
-   "seed": 11,
-   "name": "Middle Tennessee State",
-   "wins": 0,
-   "score": 0,
-   "color": "#0066CC",
-   "lostTo": "St. Mary's, California",
-   "offset": 2
+   "offset": 0
   },
   {
    "seed": 11,
@@ -16740,7 +16560,16 @@
    "score": 0,
    "color": "#E87722",
    "lostTo": "Butler",
-   "offset": 3
+   "offset": 1
+  },
+  {
+   "seed": 11,
+   "name": "St. Mary's, California",
+   "wins": 0,
+   "score": 0,
+   "color": "#06315B",
+   "lostTo": "Memphis",
+   "offset": 2
   },
   {
    "seed": 11,
@@ -16749,7 +16578,7 @@
    "score": 0,
    "color": "#C8102E",
    "lostTo": "Arizona",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 12,
@@ -16790,20 +16619,11 @@
   {
    "seed": 13,
    "name": "La Salle",
-   "wins": 3,
-   "score": 3,
+   "wins": 2,
+   "score": 2,
    "color": "#FFCC00",
    "lostTo": "Wichita State",
    "offset": 0
-  },
-  {
-   "seed": 13,
-   "name": "Boise State",
-   "wins": 0,
-   "score": 0,
-   "color": "#D64309",
-   "lostTo": "La Salle",
-   "offset": 1
   },
   {
    "seed": 13,
@@ -16812,7 +16632,7 @@
    "score": 0,
    "color": "#660033",
    "lostTo": "Syracuse",
-   "offset": 2
+   "offset": 1
   },
   {
    "seed": 13,
@@ -16821,7 +16641,7 @@
    "score": 0,
    "color": "#861F41",
    "lostTo": "St. Louis",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 13,
@@ -16830,7 +16650,7 @@
    "score": 0,
    "color": "#0033A0",
    "lostTo": "Michigan",
-   "offset": 4
+   "offset": 3
   },
   {
    "seed": 14,
@@ -16907,38 +16727,11 @@
   {
    "seed": 16,
    "name": "North Carolina A&T",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#F3B237",
    "lostTo": "Louisville",
    "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "James Madison",
-   "wins": 1,
-   "score": 1,
-   "color": "#450084",
-   "lostTo": "Indiana",
-   "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Liberty",
-   "wins": 0,
-   "score": 0,
-   "color": "#002D62",
-   "lostTo": "North Carolina A&T",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "Long Island-Brooklyn",
-   "wins": 0,
-   "score": 0,
-   "color": "#231F20",
-   "lostTo": "James Madison",
-   "offset": 3
   },
   {
    "seed": 16,
@@ -16947,7 +16740,16 @@
    "score": 0,
    "color": "#58B6E7",
    "lostTo": "Gonzaga",
-   "offset": 4
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "James Madison",
+   "wins": 0,
+   "score": 0,
+   "color": "#450084",
+   "lostTo": "Indiana",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -16956,7 +16758,7 @@
    "score": 0,
    "color": "#C60C30",
    "lostTo": "Kansas",
-   "offset": 5
+   "offset": 3
   }
  ],
  "2014": [
@@ -17322,30 +17124,21 @@
   },
   {
    "seed": 11,
-   "name": "Tennessee",
-   "wins": 3,
-   "score": 3,
-   "color": "#FF8200",
-   "lostTo": "Michigan",
-   "offset": 0
-  },
-  {
-   "seed": 11,
    "name": "Dayton",
    "wins": 3,
    "score": 3,
    "color": "#CE1141",
    "lostTo": "Florida",
-   "offset": 1
+   "offset": 0
   },
   {
    "seed": 11,
-   "name": "Iowa",
-   "wins": 0,
-   "score": 0,
-   "color": "#FFCD00",
-   "lostTo": "Tennessee",
-   "offset": 2
+   "name": "Tennessee",
+   "wins": 2,
+   "score": 2,
+   "color": "#FF8200",
+   "lostTo": "Michigan",
+   "offset": 1
   },
   {
    "seed": 11,
@@ -17354,7 +17147,7 @@
    "score": 0,
    "color": "#8A8D8F",
    "lostTo": "North Carolina",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 11,
@@ -17363,16 +17156,7 @@
    "score": 0,
    "color": "#E41C38",
    "lostTo": "Baylor",
-   "offset": 4
-  },
-  {
-   "seed": 12,
-   "name": "North Carolina State",
-   "wins": 1,
-   "score": 1,
-   "color": "#CC0000",
-   "lostTo": "St. Louis",
-   "offset": 0
+   "offset": 3
   },
   {
    "seed": 12,
@@ -17381,7 +17165,7 @@
    "score": 1,
    "color": "#A41034",
    "lostTo": "Michigan State",
-   "offset": 1
+   "offset": 0
   },
   {
    "seed": 12,
@@ -17390,7 +17174,7 @@
    "score": 1,
    "color": "#0A5640",
    "lostTo": "San Diego State",
-   "offset": 2
+   "offset": 1
   },
   {
    "seed": 12,
@@ -17399,16 +17183,16 @@
    "score": 1,
    "color": "#613393",
    "lostTo": "UCLA",
-   "offset": 3
+   "offset": 2
   },
   {
    "seed": 12,
-   "name": "Xavier, Ohio",
+   "name": "North Carolina State",
    "wins": 0,
    "score": 0,
-   "color": "#0C2340",
-   "lostTo": "North Carolina State",
-   "offset": 4
+   "color": "#CC0000",
+   "lostTo": "St. Louis",
+   "offset": 3
   },
   {
    "seed": 13,
@@ -17521,38 +17305,11 @@
   {
    "seed": 16,
    "name": "Albany",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#461660",
    "lostTo": "Florida",
    "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Cal Poly",
-   "wins": 1,
-   "score": 1,
-   "color": "#003831",
-   "lostTo": "Wichita State",
-   "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Mt. St. Mary's, Maryland",
-   "wins": 0,
-   "score": 0,
-   "color": "#002855",
-   "lostTo": "Albany",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "Texas Southern",
-   "wins": 0,
-   "score": 0,
-   "color": "#7C183E",
-   "lostTo": "Cal Poly",
-   "offset": 3
   },
   {
    "seed": 16,
@@ -17561,7 +17318,16 @@
    "score": 0,
    "color": "#006F71",
    "lostTo": "Virginia",
-   "offset": 4
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Cal Poly",
+   "wins": 0,
+   "score": 0,
+   "color": "#003831",
+   "lostTo": "Wichita State",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -17570,7 +17336,7 @@
    "score": 0,
    "color": "#4B2682",
    "lostTo": "Arizona",
-   "offset": 5
+   "offset": 3
   }
  ],
  "2015": [
@@ -17936,48 +17702,21 @@
   },
   {
    "seed": 11,
-   "name": "Dayton",
-   "wins": 2,
-   "score": 2,
-   "color": "#CE1141",
-   "lostTo": "Oklahoma",
-   "offset": 0
-  },
-  {
-   "seed": 11,
    "name": "UCLA",
    "wins": 2,
    "score": 2,
    "color": "#2D68C4",
    "lostTo": "Gonzaga",
-   "offset": 1
+   "offset": 0
   },
   {
    "seed": 11,
-   "name": "Mississippi",
+   "name": "Dayton",
    "wins": 1,
    "score": 1,
-   "color": "#CE1126",
-   "lostTo": "Xavier, Ohio",
-   "offset": 2
-  },
-  {
-   "seed": 11,
-   "name": "Brigham Young",
-   "wins": 0,
-   "score": 0,
-   "color": "#002E5D",
-   "lostTo": "Mississippi",
-   "offset": 3
-  },
-  {
-   "seed": 11,
-   "name": "Boise State",
-   "wins": 0,
-   "score": 0,
-   "color": "#D64309",
-   "lostTo": "Dayton",
-   "offset": 4
+   "color": "#CE1141",
+   "lostTo": "Oklahoma",
+   "offset": 1
   },
   {
    "seed": 11,
@@ -17986,7 +17725,16 @@
    "score": 0,
    "color": "#BF5700",
    "lostTo": "Butler",
-   "offset": 5
+   "offset": 2
+  },
+  {
+   "seed": 11,
+   "name": "Mississippi",
+   "wins": 0,
+   "score": 0,
+   "color": "#CE1126",
+   "lostTo": "Xavier, Ohio",
+   "offset": 3
   },
   {
    "seed": 12,
@@ -18134,48 +17882,30 @@
   },
   {
    "seed": 16,
-   "name": "Hampton",
-   "wins": 1,
-   "score": 1,
-   "color": "#0060A9",
-   "lostTo": "Kentucky",
-   "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Robert Morris",
-   "wins": 1,
-   "score": 1,
-   "color": "#14234B",
-   "lostTo": "Duke",
-   "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Manhattan",
-   "wins": 0,
-   "score": 0,
-   "color": "#00703C",
-   "lostTo": "Hampton",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "North Florida",
-   "wins": 0,
-   "score": 0,
-   "color": "#00246B",
-   "lostTo": "Robert Morris",
-   "offset": 3
-  },
-  {
-   "seed": 16,
    "name": "Lafayette",
    "wins": 0,
    "score": 0,
    "color": "#98002E",
    "lostTo": "Villanova",
-   "offset": 4
+   "offset": 0
+  },
+  {
+   "seed": 16,
+   "name": "Hampton",
+   "wins": 0,
+   "score": 0,
+   "color": "#0060A9",
+   "lostTo": "Kentucky",
+   "offset": 1
+  },
+  {
+   "seed": 16,
+   "name": "Robert Morris",
+   "wins": 0,
+   "score": 0,
+   "color": "#14234B",
+   "lostTo": "Duke",
+   "offset": 2
   },
   {
    "seed": 16,
@@ -18184,7 +17914,7 @@
    "score": 0,
    "color": "#006F71",
    "lostTo": "Wisconsin",
-   "offset": 5
+   "offset": 3
   }
  ],
  "2016": [
@@ -18550,30 +18280,21 @@
   },
   {
    "seed": 11,
-   "name": "Wichita State",
-   "wins": 2,
-   "score": 2,
-   "color": "#FFCD00",
-   "lostTo": "Miami, Florida",
-   "offset": 0
-  },
-  {
-   "seed": 11,
    "name": "Gonzaga",
    "wins": 2,
    "score": 2,
    "color": "#041E42",
    "lostTo": "Syracuse",
-   "offset": 1
+   "offset": 0
   },
   {
    "seed": 11,
-   "name": "Michigan",
+   "name": "Wichita State",
    "wins": 1,
    "score": 1,
-   "color": "#00274C",
-   "lostTo": "Notre Dame",
-   "offset": 2
+   "color": "#FFCD00",
+   "lostTo": "Miami, Florida",
+   "offset": 1
   },
   {
    "seed": 11,
@@ -18582,25 +18303,16 @@
    "score": 1,
    "color": "#4B116F",
    "lostTo": "Texas A&M",
+   "offset": 2
+  },
+  {
+   "seed": 11,
+   "name": "Michigan",
+   "wins": 0,
+   "score": 0,
+   "color": "#00274C",
+   "lostTo": "Notre Dame",
    "offset": 3
-  },
-  {
-   "seed": 11,
-   "name": "Vanderbilt",
-   "wins": 0,
-   "score": 0,
-   "color": "#866D4B",
-   "lostTo": "Wichita State",
-   "offset": 4
-  },
-  {
-   "seed": 11,
-   "name": "Tulsa",
-   "wins": 0,
-   "score": 0,
-   "color": "#002D72",
-   "lostTo": "Michigan",
-   "offset": 5
   },
   {
    "seed": 12,
@@ -18749,38 +18461,11 @@
   {
    "seed": 16,
    "name": "Florida Gulf Coast",
-   "wins": 1,
-   "score": 1,
+   "wins": 0,
+   "score": 0,
    "color": "#002D72",
    "lostTo": "North Carolina",
    "offset": 0
-  },
-  {
-   "seed": 16,
-   "name": "Holy Cross",
-   "wins": 1,
-   "score": 1,
-   "color": "#602D89",
-   "lostTo": "Oregon",
-   "offset": 1
-  },
-  {
-   "seed": 16,
-   "name": "Fairleigh Dickinson",
-   "wins": 0,
-   "score": 0,
-   "color": "#28334A",
-   "lostTo": "Florida Gulf Coast",
-   "offset": 2
-  },
-  {
-   "seed": 16,
-   "name": "Southern",
-   "wins": 0,
-   "score": 0,
-   "color": "#58B6E7",
-   "lostTo": "Holy Cross",
-   "offset": 3
   },
   {
    "seed": 16,
@@ -18789,7 +18474,7 @@
    "score": 0,
    "color": "#0060A9",
    "lostTo": "Virginia",
-   "offset": 4
+   "offset": 1
   },
   {
    "seed": 16,
@@ -18798,7 +18483,16 @@
    "score": 0,
    "color": "#C41E3A",
    "lostTo": "Kansas",
-   "offset": 5
+   "offset": 2
+  },
+  {
+   "seed": 16,
+   "name": "Holy Cross",
+   "wins": 0,
+   "score": 0,
+   "color": "#602D89",
+   "lostTo": "Oregon",
+   "offset": 3
   }
  ]
 }

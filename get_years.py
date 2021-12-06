@@ -95,7 +95,11 @@ with open("years_with_colors_sorted_lost_to.json", "w") as outfile:
     outfile.write(json.dumps(years_with_scores, indent = 1))
 
 # TEST DATA LOAD
-# with open("years_with_colors.json", "r") as infile:
+# with open("years.json", "w") as outfile:
+#     outfile.write(json.dumps(years, indent = 1))
+
+
+# with open("years.json", "r") as infile:
 #     years_obj = json.load(infile)
 
 # total_wrong = 0
@@ -106,5 +110,4 @@ with open("years_with_colors_sorted_lost_to.json", "w") as outfile:
 #             print(f"{year} seed: {idx+1} has {len(seed_dict)} at this seed")
 #             # pprint.pprint(seed_dict)
 
-# with open("years_with_colors.json", "r") as infile:
-#     years_obj = json.load(infile)
+# print(total_wrong)

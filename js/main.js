@@ -123,9 +123,9 @@ var mainTooltip = d3.select("#main").append("div")
     .style("opacity", 0);
 
 async function mainReady() {
-    years = await d3.json("years_with_colors_sorted_lost_to.json");
+    years = await d3.json("years.json");
     colors = await d3.json("colors.json");
-    streaks = await d3.json("team_streaks_with_colors.json");
+    streaks = await d3.json("teams.json");
 
     // create background paper for plot
     

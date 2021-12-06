@@ -98,5 +98,5 @@ for team_name in records:
 				current_streak = []
 	records[team_name] = streaks
 			
-with open("team_streaks_with_colors.json", "w") as outfile:
+with open("team_streaks_with_colors_no_opening_rounds.json", "w") as outfile:
     outfile.write(json.dumps(records, indent = 1, sort_keys=True))
