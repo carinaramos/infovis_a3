@@ -1,11 +1,11 @@
 const mainLayout = {
     width: 1000,
     height: 630,
-    chartWidth: 632,
+    chartWidth: 648,
     chartHeight: 462,
     marginTop: 120,
     marginBottom: 20,
-    marginLeft: 90,
+    marginLeft: 120,
     marginRight: 10,
     bumper: 10
   };
@@ -20,6 +20,7 @@ const updateSelectedYear = (year) => {
     console.log("updating selectedYear to " + year)
     removeColumns();
     selectedYear = year;
+    document.getElementById("year-selector").value = selectedYear;
     drawColumns(selectedYear);
 }
 
@@ -38,7 +39,9 @@ const updateSelectedSchools = (schoolName) => {
         removeRounds(schoolName);
         removeButton(schoolName);
     }
-    console.log("now selected schools is: " + selectedSchools);
+    console.log("now selectedSchools is: " + selectedSchools);
+    removeColumns();
+    drawColumns(selectedYear);
 }
 
 const handleTeamButtonClick = (btn) => {
@@ -62,11 +65,12 @@ const createButton = (teamName) => {
     btn.style.color = colors[teamName];
     btn.addEventListener("mouseover", function() {
         document.getElementById(strFormat(teamName) + "-button").style.backgroundColor = "lightgrey";
-        // document.getElementById(strFormat(teamName) + "-button").innerHTML = "Remove";
     });
     btn.addEventListener("mouseout", function() {
-        document.getElementById(strFormat(teamName) + "-button").style.backgroundColor = "white";
-        // document.getElementById(strFormat(teamName) + "-button").innerHTML = document.getElementById(strFormat(teamName) + "-button").value + ' ✕';
+        let btn = document.getElementById(strFormat(teamName) + "-button");
+        if (btn) {
+            btn.style.backgroundColor = "white";
+        }
     });
     btn.onclick = function() {handleTeamButtonClick(this)};
     btn.innerHTML = teamName + ' ✕';
@@ -115,11 +119,11 @@ let yScaleMain = d3.scaleLinear()
 
 // Define the div for the tooltip - https://bl.ocks.org/d3noob/a22c42db65eb00d4e369
 var mainTooltip = d3.select("#main").append("div")	
-    .attr("class", "tooltip")				
+    .attr("class", "tooltip main-tooltip")				
     .style("opacity", 0);
 
 async function mainReady() {
-    years = await d3.json("years_with_colors.json");
+    years = await d3.json("years_with_colors_sorted_lost_to.json");
     colors = await d3.json("colors.json");
     streaks = await d3.json("team_streaks_with_colors.json");
 
@@ -142,7 +146,7 @@ async function mainReady() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     mainSvg.append("text")
-        .attr("transform", `translate(${mainLayout.marginLeft - 70},${mainLayout.marginTop + mainLayout.chartHeight/2}) rotate(270)`)
+        .attr("transform", `translate(${0},${mainLayout.marginTop - 20})`)
         .text("Round Knocked Out")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
@@ -152,7 +156,7 @@ async function mainReady() {
         .attr("transform", `translate(${mainLayout.marginLeft},${mainLayout.marginTop + mainLayout.chartHeight})`)
         .call(d3.axisBottom(xScaleMain).ticks(16).tickFormat(d3.format("d")));
 
-    xAxis.selectAll("text").attr("fill", "gray").attr("transform", `translate(${18},${0})`);
+    xAxis.selectAll("text").attr("fill", "gray").attr("transform", `translate(${21},${0})`);
     xAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     // x axis title
@@ -172,29 +176,40 @@ function removeColumns() {
 
 function drawColumns(year) {
     var teams = years[year];
-    // console.log(teams)
+    console.log("drawing columns withselected schools: " + selectedSchools)
    
     mainSvg.selectAll("bar")
         .data(teams)
         .enter().append("rect")
-        .attr("transform", `translate(${mainLayout.marginLeft},${mainLayout.marginTop})`)
+        .attr("id", d => strFormat(d.name) + "-bar")
+        .attr("transform", `translate(${mainLayout.marginLeft+2},${mainLayout.marginTop})`)
         .attr("class", "bar")
-        .attr("fill", d => d["color"])
-        .attr("opacity", 0.7)
-        .attr("x", d => xScaleMain(d["seed"])+ d.offset*10)
-        .attr("y", d => yScaleMain(d["wins"]))
+        .attr("fill", d => d.color)
+        .attr("opacity", d=> selectedSchools.includes(d.name) ? 1.0 : 0.5)
+        .attr("x", d => xScaleMain(d.seed)+ d.offset*10)
+        .attr("y", d => yScaleMain(d.wins))
         .attr("width", 8)
         .attr('rx', 0)
         .attr("height", function(d) { return mainLayout.chartHeight - yScaleMain(d.wins); })
         .on("mouseover", function(e, d) {
+            d3.select(this)
+                .attr("opacity", d => selectedSchools.includes(d.name) ? 0.5 : 1.0);
+            // if (d.wins < 6) {
+            //     document.getElementById(strFormat(d.lostTo) + "-bar").style.opacity = 1.0;
+            // }
             mainTooltip.transition()		
                 .duration(100)		
                 .style("opacity", .9);
-            mainTooltip.html(d.name)	
+            mainTooltip.html("<b>" + d.name + "</b><br/>" + (d.wins === 6 ? "" : "Lost in ") + wins_to_round[d.wins] + (d.wins === 6 ? "" : " to " + d.lostTo))
                 .style("left", (e.x) + "px")		
                 .style("top", (e.y)+ "px");	
             })					
-        .on("mouseout", function(d) {		
+        .on("mouseout", function(e, d) {
+            d3.select(this)
+                .attr("opacity", d => selectedSchools.includes(d.name) ? 1.0 : 0.5);
+            // if (d.wins < 6) {
+            //     document.getElementById(strFormat(d.lostTo) + "-bar").style.opacity = selectedSchools.includes(d.lostTo) ? 1.0 : 0.5;
+            // }
             mainTooltip.transition()		
                 .duration(50)		
                 .style("opacity", 0);	

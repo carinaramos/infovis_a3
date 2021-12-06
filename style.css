@@ -1,6 +1,6 @@
 #container {
     box-sizing: border-box;
-    width: 1350;
+    width: 1500;
     height: 800;
     margin: 10px auto;
     padding: 20px;
@@ -72,24 +72,9 @@ h2 {
 #controls {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-
-
-div.tooltip {	
-  position: absolute;			
-  text-align: center;
-  width: 150px;
-  padding: 2px;				
-  font: 12px sans-serif;		
-  background: lightgrey;	
-  border: 0px;		
-  border-radius: 8px;			
-  pointer-events: none;			
-}
-
-div.seed-tooltip {
-  width: 100px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 #year-selector {
@@ -102,16 +87,37 @@ div.seed-tooltip {
 }
 
 #team-buttons {
+  margin-left: 132px;
   min-height: 40px;
 }
 
-.btn {
+.btn-sm {
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 6px;
+  min-width: 80px;
 }
 
 .btn:hover {
   background-color: 'pink';
 }
+
+div.tooltip {	
+  position: absolute;			
+  text-align: center;
+  min-width: 160px;
+  padding: 10px;				
+  font: 12px sans-serif;		
+  background-color: #ebebeb;
+  opacity: 0.3;
+  border: 0px;		
+  border-radius: 8px;			
+  pointer-events: none;			
+}
+
+div.main-tooltip {
+  min-width: 0px;
+}
+
+
 
