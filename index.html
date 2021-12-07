@@ -12,7 +12,9 @@
     
     <div id="container">
         <div id="title" class="sub-container">
-            <h2>NCAA March Madness Tournament Data</h2>
+            <h2>NCAA March Madness Tournament Results, 1985 – 2016</h2>
+            <p><small>
+                March Madness is the annual post-season tournament played by the top 64 NCAA Division 1 Men’s Basketball teams. The teams are divided into four regions, and within each region, teams are seeded (ranked) from 1 to 16, with 1 being the best and 16 being the worst, resulting in four teams at each seed across the whole tournament. The setup of the tournament is standard: in the first round, the seed numbers of each matchup sum to 17. For example, 1-seeds play 16-seeds, 2-seeds play 15-seeds, and so on. The winning team from each game advances until one winner from each region plays in the Final Four. From there, the two winners play in the championship.            </small></p>
         </div>
         <div id="content">
             <div id="main-content" class="sub-container">
@@ -26,20 +28,24 @@
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="toggle">
                         </div>
-                    </div>
+                        <div id="toggle-help"></div>
+                    </div>  
                 </div>
                 <div id="main"></div>
             </div>
             <div id="sidebar" class="sub-container">
-                <div id="sidebar-controls">
-                    <h5>Select teams:</h5>
-                    <select id="team-selector" class="form-select" aria-label=".form-select-sm example">
-                        <option selected value="Select a team">Select</option>
-                    </select>
-                    <button id="clear-button" class="btn btn-outline-secondary">Clear All</button>
+                <div id="sidebar-header">
+                    <div id="sidebar-controls">
+                        <h5>Select teams:</h5>
+                        <select id="team-selector" class="form-select" aria-label=".form-select-sm example">
+                            <option selected value="Select a team">Select</option>
+                        </select>
+                        <button id="clear-button" class="btn btn-outline-secondary">Clear All</button>
+                    </div>
+                    <div id="team-buttons"></div>
                 </div>
                 <div id="sidebar-plots">
-                    <div id="team-buttons"></div>
+                    
                     <div id="score"></div>
                     <div id="round"></div>
                     <div id="seed"></div>  

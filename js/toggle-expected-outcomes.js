@@ -74,7 +74,7 @@ function drawExpectedOutcomes() {
         .attr("transform", `translate(${mainLayout.marginLeft+2},${mainLayout.marginTop})`)
         .attr("class", "bar-expected")
         .attr("fill", "lightgrey")
-        .attr("opacity", 0.4)
+        .attr("opacity", 0.8)
         .attr("x", d => xScaleMain(d.seed)+ d.offset*10)
         .attr("y", d => yScaleMain(d.wins))
         .attr("width", 8)
@@ -90,9 +90,45 @@ function removeExpectedOutcomes() {
 var toggle = document.getElementById('toggle');
 const handleToggle = (e) => {
     if (e.checked) {
+        removeColumns();
         drawExpectedOutcomes();
+        drawColumns(selectedYear);
     } else {
         removeExpectedOutcomes();
     }
 }
 toggle.onchange = function() {handleToggle(this)};
+
+
+let toggleSvg = d3.select("#toggle-help").append("svg");
+// create svg called my-score for this plot
+toggleSvg.attr("id", "toggle-svg")
+    .attr("width", 50)
+    .attr("height", 20)
+    .attr("viewBox", [0, 0, 20, 50].join(" "));
+
+// add tooltip
+let toggleTooltip = d3.select("#round").append("div")	
+    .attr("class", "tooltip toggle-tooltip")				
+    .style("opacity", 0);
+// add help text
+toggleSvg.append("text")
+    .attr("transform", `translate(${10},${35})`)
+    .text("Help")
+    .attr("text-anchor", "end")
+    .attr("font-size", 30)
+    .attr("fill", "red")
+    .attr("text-decoration", "underline")
+    .on("mouseover", function(e, d) {
+    toggleTooltip.transition()		
+        .duration(100)		
+        .style("opacity", .9);
+    toggleTooltip.html("The higher-seeded team is expected to win in each matchup in the tournament. If this occurred, 9-16 seeds would lose in the Round of 64, 5-8 seeds would lose in the Round of 32, 3-4 seeds would lose in the Sweet 16, and 2-seeds would lose in the Elite 8. Two 1-seeds would lose in the Final 4, leaving the final two to win and lose the Championship, respectively. Toggle this view to compare these expected outcomes with the actual outcomes.")	
+        .style("left", (e.x) + "px")		
+        .style("top", (e.y)+ "px");	
+    })					
+    .on("mouseout", function(d) {		
+        toggleTooltip.transition()		
+            .duration(50)		
+            .style("opacity", 0);	
+    })

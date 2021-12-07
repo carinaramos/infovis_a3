@@ -1,6 +1,6 @@
 const scoreLayout = {
     width: 1000,
-    height: 160,
+    height: 180,
     chartWidth: 425,
     chartHeight: 110,
     marginTop: 30,
@@ -18,6 +18,11 @@ function strFormat(schoolName) {
     return schoolName.replaceAll(' ', '-').replaceAll("'", '-').replaceAll(',', '-').replaceAll('.', '-').replace('&','')
 }
 
+var helpTooltip = d3.select("#round").append("div")	
+    .attr("class", "tooltip help-tooltip")				
+    .style("opacity", 0);
+
+
 let scoresSvg = d3.select("#score").append("svg");
 
 let xDataScores = range(1985, 2016);
@@ -32,6 +37,8 @@ let yScaleScores = d3.scaleLinear()
 var scoresTooltip = d3.select("#round").append("div")	
     .attr("class", "tooltip score-tooltip")				
     .style("opacity", 0);
+
+
 
 
 async function scoresReady() {
@@ -53,7 +60,37 @@ async function scoresReady() {
         .attr("transform", `translate(${scoreLayout.marginLeft - 125},${scoreLayout.marginTop - 15})`)
         .text("Games Won vs. Expected")
         .attr("font-size", 11)
-        .attr("fill", "dimgray");    
+        .attr("fill", "dimgray");
+    
+    // add title
+    scoresSvg.append("text")
+        .attr("transform", `translate(${scoreLayout.marginLeft + 125},${scoreLayout.marginTop - 16})`)
+        .text("Team Performance Over Time")
+        .attr("font-size", 14)
+        .attr("fill", "black");
+
+    // add help text
+    scoresSvg.append("text")
+      .attr("transform", `translate(${465},${scoreLayout.marginTop - 16})`)
+      .text("Help")
+      .attr("text-anchor", "end")
+      .attr("font-size", 11)
+      .attr("fill", "red")
+      .attr("text-decoration", "underline")
+      .on("mouseover", function(e, d) {
+        helpTooltip.transition()		
+            .duration(100)		
+            .style("opacity", .9);
+        helpTooltip.html("Performance scores for each year are calculated by subtracting the actual number of games a team won in each year from the number of games that team was predicted to win based on its seed that year. Scores above zero indicate more wins than expected, while scores below zero indicate fewer.  If a team did not qualify for the tournament in a given year, there is no data point displayed for that year.")	
+            .style("left", (e.x) + "px")		
+            .style("top", (e.y)+ "px");	
+        })					
+        .on("mouseout", function(d) {		
+            helpTooltip.transition()		
+                .duration(50)		
+                .style("opacity", 0);	
+        })
+    
 
     // format x axis
     let xAxis = scoresSvg.append("g")
@@ -120,13 +157,10 @@ function drawScores(schoolName) {
             .attr("fill", d => d["color"])
             .attr("opacity", 0.8)
             .on("mouseover", function(e, d) {
-                // console.log(d);
-                // console.log(e);
                 scoresTooltip.transition()		
                     .duration(100)		
                     .style("opacity", .9);
                 scoresTooltip.html("<b>" + d.name + " " + d.year + "</b><br/>" + "Predicted to win " + (d.predictedWins == 4.75 ? "4 to 6" : d.predictedWins) + " game" + (d.predictedWins == 1 ? " " : "s ") + (d.predictedWins == d.wins ? "and " : "but ")  + " won " + d.wins)	
-                // scoresTooltip.html(d.predictedWins)	
                     .style("left", (e.x) + "px")		
                     .style("top", (e.y)+ "px");	
                 })					

@@ -2,8 +2,8 @@ const mainLayout = {
     width: 1000,
     height: 630,
     chartWidth: 648,
-    chartHeight: 462,
-    marginTop: 120,
+    chartHeight: 490,
+    marginTop: 86,
     marginBottom: 20,
     marginLeft: 120,
     marginRight: 10,
@@ -14,7 +14,7 @@ const mainLayout = {
 var years = {}
 var streaks = {}
 var selectedSchools = [];
-var selectedYear = "2000";
+var selectedYear = "1985";
 
 const updateSelectedYear = (year) => {
     console.log("updating selectedYear to " + year)
@@ -22,6 +22,7 @@ const updateSelectedYear = (year) => {
     selectedYear = year;
     document.getElementById("year-selector").value = selectedYear;
     drawColumns(selectedYear);
+    updateTitle();
 }
 
 const updateSelectedSchools = (schoolName) => {
@@ -146,10 +147,11 @@ async function mainReady() {
     yAxis.selectAll("line, .domain").attr("stroke", "gray");
     
     mainSvg.append("text")
-        .attr("transform", `translate(${0},${mainLayout.marginTop - 20})`)
-        .text("Round Knocked Out")
+        .attr("transform", `translate(${13},${mainLayout.marginTop - 20})`)
+        .text("Round Eliminated")
         .attr("font-size", 14)
         .attr("fill", "dimgray");
+
     
 
     let xAxis = mainSvg.append("g")
@@ -168,6 +170,7 @@ async function mainReady() {
       .attr("fill", "dimgray")
             
     drawColumns(selectedYear);
+    updateTitle();
 };
 
 function removeColumns() { 
@@ -213,6 +216,15 @@ function drawColumns(year) {
         });
 }
 
+function updateTitle() {
+    mainSvg.select("#title-text").remove()
+    mainSvg.append("text")
+        .attr("id", "title-text")
+        .attr("transform", `translate(${155},${mainLayout.marginTop - 20})`)
+        .text("Seed Number vs. Round Eliminated in " + selectedYear + " Tournament")
+        .attr("font-size", 24)
+        .attr("fill", "black");
+}
 
 async function ready() {
     await mainReady();

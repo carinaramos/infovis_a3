@@ -43,6 +43,32 @@ async function seedsReady() {
         .text("Seed")
         .attr("font-size", 11)
         .attr("fill", "dimgray");
+    // add title
+    seedsSvg.append("text")
+        .attr("transform", `translate(${scoreLayout.marginLeft + 125},${scoreLayout.marginTop - 16})`)
+        .text("Team Seed Number Over Time")
+        .attr("font-size", 14)
+        .attr("fill", "black");
+    seedsSvg.append("text")
+    .attr("transform", `translate(${470},${seedLayout.marginTop - 16})`)
+    .text("Help")
+    .attr("text-anchor", "end")
+    .attr("font-size", 11)
+    .attr("fill", "red")
+    .attr("text-decoration", "underline")
+    .on("mouseover", function(e, d) {
+        helpTooltip.transition()		
+            .duration(100)		
+            .style("opacity", .9);
+        helpTooltip.html("Y-position indicates a team’s tournament seed for each year on the X-axis. 1-seeded teams are expected to be the best, while 16-seeded teams are expected to perform the worst. If a team did not qualify for the tournament in a given year, there is no data point displayed for that year.")	
+            .style("left", (e.x) + "px")		
+            .style("top", (e.y)+ "px");	
+        })					
+        .on("mouseout", function(d) {		
+            helpTooltip.transition()		
+                .duration(50)		
+                .style("opacity", 0);	
+        })
     
     // format x axis
     let xAxis = seedsSvg.append("g")
